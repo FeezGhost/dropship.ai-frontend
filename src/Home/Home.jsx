@@ -200,13 +200,13 @@ function Home() {
         <div key="slide1" style={{ padding: 40, height: 300, marginLeft:'30rem' }}>
 		<div className="testimonial-2">
 			<h5>Asim</h5>
-			<p>Hey there, I’m Kristina! I’ve called Western New York and Niagara Falls, NY home for most of my life, and am excited and eager to share its charm, history, and beauty with as many people as possible.</p>
+			<p>Hey there, I'm Kristina! I've called Western New York and Niagara Falls, NY home for most of my life, and am excited and eager to share its charm, history, and beauty with as many people as possible.</p>
 		</div>
         </div>
         <div key="slide2" style={{ padding: 40, height: 300, marginLeft:'30rem' }}>
 		<div className="testimonial-2">
 			<h5>Adrian</h5>
-			<p>Hey there, I’m Kristina! I’ve called Western New York and Niagara Falls, NY home for most of my life, and am excited and eager to share its charm, history, and beauty with as many people as possible.</p>
+			<p>Hey there, I'm Kristina! I've called Western New York and Niagara Falls, NY home for most of my life, and am excited and eager to share its charm, history, and beauty with as many people as possible.</p>
 		</div>
         </div>
     </Carousel>
