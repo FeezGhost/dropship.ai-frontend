@@ -1,0 +1,15 @@
+.navbar-custom ul{
+	margin-left: auto !important;
+}
+
+
+.menu_active{
+	font-weight: bold;
+	font-size: 1rem !important;
+	color: rgba(140, 198, 63, 1) !important;
+}
+
+.navbar-resize{
+	/* height: 8rem; */
+
+}
