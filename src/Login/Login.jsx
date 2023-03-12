@@ -76,9 +76,9 @@ function Login() {
   return (
 	<>
 	
-	<div className="page-login d-flex align-items-center justify-content-center">
+	<div className="page-login d-flex align-items-center justify-content-center ">
 	<div className="card" >
-		<div className="card-body ">
+		<div className="card-body login-body">
 		<div className="row m-5">
 		<span className=''>Login</span> <br/>
 		<span className='dropship-ai'> DropShip.Ai</span> 
