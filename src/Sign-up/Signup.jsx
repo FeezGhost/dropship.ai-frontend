@@ -1,79 +1,196 @@
-import React,{useState} from 'react'
-import {NavLink} from 'react-router-dom';
-import 'axios';
-import signup from '../assets/signup.png'
+import React, { useState, useEffect } from 'react'
+import { NavLink } from 'react-router-dom'
+import Toast from '../Toast/Toast'
+import signupicon from '../assets/signup.png'
 import './Signup.css'
-import axios from 'axios';
 
 function Signup() {
-	const [userName,setUserName]=useState('')
-	const [email,setEmail]=useState('')
-	const [password,setPassword]=useState('')
+  const [userName, setUserName] = useState(null)
+  const [email, setEmail] = useState(null)
+  const [password, setPassword] = useState(null)
+  const [confirmPassword, setConfirmPassword] = useState(null)
+  const [validatepass, setValidatePass] = useState(false)
+  const [validateUser, setValidateUserName] = useState(false)
+  const [validateEmail, setValidateemail] = useState(false)
+  const [showToast, setShowToast] = useState(false)
+  const [signuperr, setsignupError] = useState(null)
+  const [color, setColor] = useState('')
+  const [content, setContent] = useState('')
 
-	const createUser=async ()=>{
+  const handleInputChange = async (e) => {
+    const { id, value } = e.target
+    if (id === 'userName') {
+      setUserName(value)
+    }
+    if (id === 'email') {
+      setEmail(value)
+    }
+    if (id === 'password') {
+      setPassword(value)
+    }
+    if (id === 'confirmPassword') {
+      await setConfirmPassword(value)
+      if (password != value) {
+        setValidatePass(true)
+        displayToast('hello', 'green')
+      } else if (password == value) {
+        setValidatePass(false)
+      }
+    }
+  }
 
-			const data= {
-				username:'hamzakhan',
-			email:'hamzakhanhere51@gmail.com',
-			password:"1234thisthis"
-		}
-	  let resp=await axios.post('https://dropship-io.herokuapp.com/auth/users',data,{
-	  headers: {
-		'Content-Type': 'application/json'
-	}})
-	}
+  const displayToast = (content, color) => {
+    setColor(color)
+    setContent(content)
+    setShowToast(true)
+    setTimeout(() => {
+      setShowToast(false)
+    }, 2000)
+  }
 
+  const createUser = async () => {
+    if (userName == '' && userName == null) {
+      setValidateUserName(true)
+      return
+    } else if (userName != '' && userName != null) {
+      setValidateUserName(false)
+    }
+    if (email == '' || email == null) {
+      setValidateemail(true)
+      return
+    } else if (email != '' && email != null) {
+      setValidateemail(false)
+    }
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: userName,
+        email,
+        password,
+        confirmPassword,
+      }),
+    }
+
+    fetch('https://dropship-io.herokuapp.com/auth/users/', requestOptions)
+      .then((resp) => {
+        if (resp.status == 200) {
+          debugger
+        } else if (resp.status == 401) {
+          setsignupError()
+        }
+      })
+      .catch((err) => {
+        debugger
+      })
+  }
 
   return (
-	<div>
-		<section id="header" className="d-flex align-items-center mt-5">
-		 <div className="container-fluid nav_bg"> 
-			<div className="row">
-				<div className="col-10 mx-auto">
-					<div className='row'>
-					<div className='col-md-7 ml-5 pt-5 pt-lg-0 order-2 order-lg-2 d-flex justify-content-center flex-column signup-form'>
-						<h1> 
-							<span className=''> SIGN UP! to gain access to</span> <br/>
-							<span className='dropship-ai'> DropShip.Ai</span> 
-						</h1>
-						<form className="mt-5">
-							<div class="mb-3">
-								<label for="exampleInputEmail1" class="form-label">User Name</label>
-								<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder='Enter User Name'/>
-								<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-							</div>
-							<div class="mb-3">
-								<label for="exampleInputEmail1" class="form-label">Email address</label>
-								<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder='Enter Your Email Address'/>
-								<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-							</div>
-							<div class="mb-3">
-								<label for="exampleInputPassword1" class="form-label">Password</label>
-								<input type="password" class="form-control" id="exampleInputPassword1" placeholder='Enter Password'/>
-							</div>
-							<div class="mb-3">
-								<label for="exampleInputPassword1" class="form-label">Confirm Password</label>
-								<input type="password" class="form-control" id="exampleInputPassword1" placeholder='Confirm Password'/>
-							</div>
-							</form>
-						<div className="mt-3">
-							<NavLink  onClick={createUser} to="/" className="btn-signup">
-								Sign Up
-							</NavLink>
-						</div>
-						<div className="mt-3">
-						if you already have an account click <NavLink to="/login"> here</NavLink> to login
-						</div>
-					</div>
-					<div className='col-lg-5 order-1 order-lg-1 header-img d-flex justify-content-center flex-column'>
-						<img src={signup} alt="socials" className='img-fluid animated'/>
-					</div>
-				</div>
-				</div>
-			</div>
-		</div>
-		</section>
-	</div>
+    <div>
+      <section id='header' className='d-flex align-items-center mt-5'>
+        <div className='container-fluid nav_bg'>
+          <div className='row'>
+            {showToast ? <Toast color={color} content={content} /> : ''}
+
+            <div className='col-10 mx-auto'>
+              <div className='row'>
+                <div className='col-md-7 ml-5 pt-5 pt-lg-0 order-2 order-lg-2 d-flex justify-content-center flex-column signup-form'>
+                  <h1>
+                    <span className=''> SIGN UP! to gain access to</span> <br />
+                    <span className='dropship-ai'> DropShip.Ai</span>
+                  </h1>
+                  <form className='mt-5'>
+                    <div className='mb-3'>
+                      <label for='userName' className='form-label'>
+                        User Name
+                      </label>
+                      <input
+                        type='email'
+                        className='form-control'
+                        id='userName'
+                        aria-describedby='emailHelp'
+                        value={userName}
+                        onChange={(e) => handleInputChange(e)}
+                        placeholder='Enter User Name'
+                      />
+                      {validateUser && (
+                        <div className='text-danger'>UserName is required</div>
+                      )}
+                    </div>
+                    <div className='mb-3'>
+                      <label for='email' className='form-label'>
+                        Email address
+                      </label>
+                      <input
+                        type='email'
+                        className='form-control'
+                        id='email'
+                        aria-describedby='emailHelp'
+                        value={email}
+                        onChange={(e) => handleInputChange(e)}
+                        placeholder='Enter Your Email Address'
+                      />
+                      {validateEmail && (
+                        <div className='text-danger'>Email is required</div>
+                      )}
+                    </div>
+                    <div className='mb-3'>
+                      <label for='password' className='form-label'>
+                        Password
+                      </label>
+                      <input
+                        type='password'
+                        className='form-control'
+                        id='password'
+                        value={password}
+                        onChange={(e) => handleInputChange(e)}
+                        placeholder='Enter Password'
+                      />
+                    </div>
+                    <div className='mb-3'>
+                      <label for='confirmPassword' className='form-label'>
+                        Confirm Password
+                      </label>
+                      <input
+                        type='password'
+                        value={confirmPassword}
+                        onChange={(e) => handleInputChange(e)}
+                        className='form-control'
+                        id='confirmPassword'
+                        placeholder='Confirm Password'
+                      />
+                      {validatepass && (
+                        <div className='text-danger'>Passwords don't match</div>
+                      )}
+                    </div>
+                  </form>
+                  <div className='mt-3'>
+                    <NavLink
+                      onClick={createUser}
+                      to='/signup'
+                      className='btn-signup'
+                    >
+                      Sign Up
+                    </NavLink>
+                  </div>
+                  <div className='mt-3'>
+                    if you already have an account click{' '}
+                    <NavLink to='/login'> here</NavLink> to login
+                  </div>
+                </div>
+                <div className='col-lg-5 order-1 order-lg-1 header-img d-flex justify-content-center flex-column'>
+                  <img
+                    src={signupicon}
+                    alt='socials'
+                    className='img-fluid animated'
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   )
 }
 

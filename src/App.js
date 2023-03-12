@@ -1,6 +1,8 @@
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import '../node_modules/bootstrap/dist/js/bootstrap.bundle'
-import {Switch,Route} from 'react-router-dom'
+import {Switch,Route,BrowserRouter,Routes,Redirect} from 'react-router-dom';
+import { history } from './helper/history';
+import RouteGuard from './RouteGuard/RouteGuard';
 import Home from './Home/Home';
 import Recover from './Recover-pass/Recover-password';
 import About from './About/About';
@@ -10,18 +12,16 @@ import Login from './Login/Login';
 
 function App() {
   return (
-    <div>
-       
+      <>
       <Navbar/>
       <Switch>
-        <Route exact path='/'><Home/></Route> 
-        <Route exact path='/about'><About/></Route> 
-        <Route exact path='/signup'><Signup/></Route>
-       
+        <RouteGuard exact path='/' component={Home} />
+        <Route exact path='/about'><About/></Route>
+        <Route exact path='/login'><Login/></Route> 
+        <Route exact path='/signup'><Signup/></Route> 
+        <Route exact path='/recover'><Recover/></Route>
       </Switch>
-      <Route exact path='/login'><Login/></Route>
-      <Route exact path='/recover'><Recover/></Route>
-    </div>
+      </>
   );
 }
 

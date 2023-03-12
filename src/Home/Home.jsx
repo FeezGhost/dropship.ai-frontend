@@ -53,16 +53,16 @@ function Home() {
 			<div className="row">
 					<div className='col-md-6 ml-5 pt-5 pt-lg-0 order-2 order-lg-1 d-flex justify-content-center backdrop-blur'>
 						<div className="flex-row">
-							<div class="rectangle">
+							<div className="rectangle">
 										<img src={board} alt="ai-board"/> <br/>
 									<span className='text-color'> Ai Enabled</span>
 								</div>
-								  <div class="rectangle-three flex backdrop-blur">
+								  <div className="rectangle-three flex backdrop-blur">
                                     <img src={bulb} alt="ai-board"/> <br/>
                             	      <span className='text-color-three'> Efficient</span>
                             	</div>  
 						</div>
-						<div class="rectangle-two">
+						<div className="rectangle-two">
 							<img src={userfriendly} alt="ai-board"/> <br/>
 						</div> 
 					</div>
