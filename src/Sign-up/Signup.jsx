@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
-import Toast from '../Toast/Toast'
+// import Toast from '../Toast/Toast'
 import signupicon from '../assets/signup.png'
 import './Signup.css'
 
@@ -14,6 +14,7 @@ function Signup() {
   const [validateEmail, setValidateemail] = useState(false)
   const [showToast, setShowToast] = useState(false)
   const [signuperr, setsignupError] = useState(null)
+  const [emailexists, setEmailExists] = useState(null)
   const [color, setColor] = useState('')
   const [content, setContent] = useState('')
 
@@ -79,6 +80,9 @@ function Signup() {
         } else if (resp.status == 401) {
           setsignupError()
         }
+        else if(resp.status ==400){
+          setEmailExists(true)
+        }
       })
       .catch((err) => {
         debugger
@@ -90,7 +94,7 @@ function Signup() {
       <section id='header' className='d-flex align-items-center mt-5'>
         <div className='container-fluid nav_bg'>
           <div className='row'>
-            {showToast ? <Toast color={color} content={content} /> : ''}
+            {/* {showToast ? <Toast color={color} content={content} /> : ''} */}
 
             <div className='col-10 mx-auto'>
               <div className='row'>
@@ -164,6 +168,9 @@ function Signup() {
                       )}
                     </div>
                   </form>
+                  {emailexists && (
+                        <div className='text-danger'>Email or Username already exists</div>
+                      )}
                   <div className='mt-3'>
                     <NavLink
                       onClick={createUser}
