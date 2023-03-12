@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import {NavLink} from 'react-router-dom';
-import Toast from '../Toast/Toast';
+// import Toast from '../Toast/Toast';
 import './Login.css'
 
 function Login() {
