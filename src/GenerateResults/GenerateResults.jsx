@@ -8,17 +8,6 @@ import {Configuration, OpenAIApi} from 'openai'
 function GenerateResults() {
   const [dis, setdisable] = useState(false)
   const [data, setdata] = useState(false)
-  const [productdata,setProductData]=useState({
-		product:'',
-		prodname:'',
-		platform:'',
-		website:'',
-		bio:'',
-		socials:'',
-		marketingcampaign:'',
-		firstad:'',
-		scaling:''
-  })
   const [prodS,setProd]=useState()
   const [storNameS,setStore]=useState()
   const [platformS,setPlatform]=useState()
@@ -58,7 +47,7 @@ function GenerateResults() {
 	let product; 
 
   const setData=async()=>{
-	
+	setdisable(true)
 	product = await generate_response("Can you name one single unique product in no more than 5 words (limitations: no food, NO NAME BRAND PRODUCTS, something that can be shipped on the internet)");
 	await setProd(product)
 
@@ -90,6 +79,7 @@ function GenerateResults() {
 							let scaling = await generate_response(`Create a 5-step plan in order to help scale an E-commerce store that sells ${product} and is named ${store_name} and whose markeitng plan is ${marketing_campaign} and is beign addvertized on ${platform}`);
 							await setScaling(scaling)
 							setdata(true)
+							setdisable(false)
 
 						}
 						}
@@ -103,60 +93,6 @@ function GenerateResults() {
   }
  
   
-
-//   def generate_response(prompt):
-//     completions = openai.Completion.create(
-//         engine="text-davinci-003",
-//         prompt=prompt,
-//         max_tokens=1024,
-//         n=1,
-//         stop=None,
-//         temperature=0.5,
-//     )
-
-//   const fetchData = async () => {
-// 	console.log("api key",process.env.REACT_APP_API_KEY)
-// 	let input="hi"
-// 	const response = await axios.post(
-// 	  "https://api.openai.com/v1/completions",
-// 	  {
-// 		prompt: `Complete this sentence: "${input}"`,
-// 		model: 'text-davinci-003',
-// 		max_tokens: 1024,
-// 		n: 1,
-// 		stop: 'None',
-// 		temperature:0.5
-// 	  },
-// 	  {
-// 		headers: {
-// 		  "Content-Type": "application/json",
-// 		  Authorization: `${process.env.REACT_APP_KEY}`,
-// 		},
-// 	  }
-// 	);
-// 	if(response.status){
-// 		setdata(true)
-// 	}
-// 	console.log("correct data",response.data.choices[0].text)
-// 	return response.data.choices[0].text;
-//   };
-
-//   const generateResult = async () => {
-//     await setdisable(true)
-//     const requestOptions = {
-//       method: 'GET',
-//       headers: { 'Content-Type': 'application/json' },
-//     }
-//     fetch('https://dropship-io.herokuapp.com/product/', requestOptions).then(
-//       (response) => {
-//         if (response.status==200) {
-// 			setdata(true)
-//         } else {
-// 			setdata(false)
-//         }
-//       }
-//     )
-//   }
 
 
   return (
@@ -175,7 +111,7 @@ function GenerateResults() {
                   type='button'
                   disabled={dis}
                   onClick={setData}
-                  className='generate-prod'
+                  className='btn btn-primary'
                 >
                   Get Results
                 </button>
