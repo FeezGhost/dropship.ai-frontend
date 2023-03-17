@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom';
 import './GenerateResults.css';
-// import Footer from '../Footer/Footer';
 import axios from 'axios';
 import {Configuration, OpenAIApi} from 'openai'
 
 function GenerateResults() {
   const [dis, setdisable] = useState(false)
-  const [data, setdata] = useState(false)
+  const [data, setdata] = useState(false);
+  const [error,setError]=useState('')
   const [prodS,setProd]=useState()
   const [storNameS,setStore]=useState()
   const [platformS,setPlatform]=useState()
@@ -26,15 +26,23 @@ function GenerateResults() {
 
   const generate_response=async(data)=>{
 	const openai= new OpenAIApi(configuration);
-	const completion = await openai.createCompletion({
-		prompt:`${data}`,
-		model: 'text-davinci-003',
-		max_tokens: 1024,
-		n: 1,
-		stop: 'None',
-		temperature:0.5
+	try{
+		const completion = await openai.createCompletion({
+			prompt:`${data}`,
+			model: 'text-davinci-003',
+			max_tokens: 1024,
+			n: 1,
+			stop: 'None',
+			temperature:0.5
 	});
 	return completion.data.choices[0].text.toString().replace(/\n/g, '')
+	}
+	catch(err){
+		debugger
+		setError(err.message)
+		setdisable(false)
+	}
+	
   }
 
   	let store_name;
@@ -48,6 +56,7 @@ function GenerateResults() {
 
   const setData=async()=>{
 	setdisable(true)
+	setError('')
 	product = await generate_response("Can you name one single unique product in no more than 5 words (limitations: no food, NO NAME BRAND PRODUCTS, something that can be shipped on the internet)");
 	await setProd(product)
 
@@ -91,9 +100,6 @@ function GenerateResults() {
 		
 	}
   }
- 
-  
-
 
   return (
     <div>
@@ -123,6 +129,13 @@ function GenerateResults() {
               ) : (
                 ''
               )}
+			  {
+				error !== ''?(
+					<p className='text-danger'>
+					{error}
+				  </p>
+				):''
+			  }
             </form>
           </div>
         </div>
