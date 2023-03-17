@@ -11,6 +11,7 @@ import Signup from './Sign-up/Signup';
 import Login from './Login/Login';
 import GenerateResults from './GenerateResults/GenerateResults';
 import EmailConfirmation from './Email-Confirmation/EmailConfirmation';
+import ResendEmail from './ResendEmail/ResendEmail';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route exact path='/signup'><Signup/></Route> 
         <Route exact path='/recover'><Recover/></Route>
         <Route exact path="/generate-product"><GenerateResults/></Route>
+        <Route exact path="/resend-email"><ResendEmail/></Route>
         <Route exact path="/user-confirmation"><EmailConfirmation/></Route>
       </Switch>
       </>

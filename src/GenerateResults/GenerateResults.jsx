@@ -38,7 +38,6 @@ function GenerateResults() {
 	return completion.data.choices[0].text.toString().replace(/\n/g, '')
 	}
 	catch(err){
-		debugger
 		setError(err.message)
 		setdisable(false)
 	}

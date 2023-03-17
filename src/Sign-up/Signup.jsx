@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 // import Toast from '../Toast/Toast'
 import signupicon from '../assets/signup.png'
+import ResendEmail from '../ResendEmail/ResendEmail'
 import './Signup.css'
 
 function Signup() {
@@ -49,6 +50,10 @@ function Signup() {
     }, 2000)
   }
 
+  const resendEmailComponent = async () => {
+    <ResendEmail />
+  }
+
   const createUser = async () => {
     if (userName == '' && userName == null) {
       setValidateUserName(true)
@@ -79,8 +84,7 @@ function Signup() {
           debugger
         } else if (resp.status == 401) {
           setsignupError()
-        }
-        else if(resp.status ==400){
+        } else if (resp.status == 400) {
           setEmailExists(true)
         }
       })
@@ -169,8 +173,10 @@ function Signup() {
                     </div>
                   </form>
                   {emailexists && (
-                        <div className='text-danger'>Email or Username already exists</div>
-                      )}
+                    <div className='text-danger'>
+                      Email or Username already exists
+                    </div>
+                  )}
                   <div className='mt-3'>
                     <NavLink
                       onClick={createUser}
@@ -183,6 +189,12 @@ function Signup() {
                   <div className='mt-3'>
                     if you already have an account click{' '}
                     <NavLink to='/login'> here</NavLink> to login
+                  </div>
+                  <div className=''>
+                    Didn't get verification mail?
+                    <NavLink onClick={resendEmailComponent} to='/resend-email'>
+                      click here!
+                    </NavLink>
                   </div>
                 </div>
                 <div className='col-lg-5 order-1 order-lg-1 header-img d-flex justify-content-center flex-column'>
