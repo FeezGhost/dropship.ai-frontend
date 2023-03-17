@@ -1,0 +1,17 @@
+.generate-prod{
+	background: rgba(90, 87, 194, 1);
+    border: 1px solid rgba(90, 87, 194, 1);
+    border-radius: 20px;
+    height: 3rem;
+    width: 9rem;
+    color: white;
+
+}
+
+.gen-rslt{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 9rem;
+}

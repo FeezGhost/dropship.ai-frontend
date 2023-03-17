@@ -2,12 +2,9 @@ import React,{useState} from 'react'
 import {NavLink} from 'react-router-dom';
 import './Recover-pass.css'
 
-
-
 // https://dropship-io.herokuapp.com/auth/users/reset_password/
 function Recover() {
 	const [email,setEmail]=useState(null)
-
 
 	const handleInputChange = async (e) => {
         const {id , value} = e.target;
@@ -27,6 +24,7 @@ function Recover() {
 		fetch('https://dropship-io.herokuapp.com/auth/users/reset_password/', requestOptions)
 			.then(response => {
 				if(response.status!=200){
+					
 				}
 				else{
 				}

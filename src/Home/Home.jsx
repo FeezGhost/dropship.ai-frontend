@@ -35,7 +35,7 @@ function Home() {
 						</h1>
 						<h7>An AI-powered drop shipping starter kit. tool designed to make your drop shipping journey as easy and quick as possible.</h7>
 						<div className="mt-3">
-							<NavLink to="/" className="btn-get-started">
+							<NavLink to="/signup" className="btn-get-started">
 								Create Your Account
 							</NavLink>
 						</div>
@@ -96,7 +96,7 @@ function Home() {
 							<span className='generate'> Generate?</span> 
 						</h1>
 						<div className="mt-3">
-							<NavLink to="/" className="btn-yes">
+							<NavLink to="/generate-product" className="btn-yes">
 								Yes
 							</NavLink>
 						</div>
