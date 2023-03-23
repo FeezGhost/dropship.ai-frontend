@@ -25,7 +25,7 @@ function App() {
         <Route exact path='/recover'><Recover/></Route>
         <Route exact path="/generate-product"><GenerateResults/></Route>
         <Route exact path="/resend-email"><ResendEmail/></Route>
-        <Route exact path="/user-confirmation"><EmailConfirmation/></Route>
+        <Route exact path="/email-confirmation"><EmailConfirmation/></Route>
       </Switch>
       </>
   );
