@@ -7,15 +7,10 @@ const Checkout = () => {
 
 	const getSesstion=()=>{
 		const requestOptions = {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({
-				"price": process.env.REACT_APP_PRICE_KEY,
-    			"product_name":"map"
-			}),
+			method: 'GET',
+			headers: { 'Content-Type': 'application/json',mode: 'no-cors' },
 		  }
-	  
-		  fetch(`${process.env.REACT_APP_API_URL}/payment/checkout/create-checkout-session/`, requestOptions)
+		  fetch(`${process.env.REACT_APP_API_URL}/payment/checkout/create-checkout-session?userid=1`, requestOptions)
 			.then((resp) => {
 			  if (resp.status == 200) {
 				debugger

@@ -78,7 +78,7 @@ function Signup() {
       }),
     }
 
-    fetch('https://dropship-io.herokuapp.com/auth/users/', requestOptions)
+    fetch(`${process.env.REACT_APP_API_URL}/auth/users/`, requestOptions)
       .then((resp) => {
         if (resp.status == 200) {
           debugger
