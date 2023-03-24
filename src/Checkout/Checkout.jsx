@@ -1,41 +1,22 @@
-import React,{useEffect} from 'react';
+import React,{useEffect,useRef} from 'react';
+import { API_URL } from '../Config/Config';
+import './Checkout.css'
 
 const Checkout = () => {
-	useEffect(()=>{
-		getSesstion()
-	})
-
-	const getSesstion=()=>{
-		const requestOptions = {
-			method: 'GET',
-			headers: { 'Content-Type': 'application/json',mode: 'no-cors' },
-		  }
-		  fetch(`${process.env.REACT_APP_API_URL}/payment/checkout/create-checkout-session?userid=1`, requestOptions)
-			.then((resp) => {
-			  if (resp.status == 200) {
-				debugger
-			  }
-			})
-			.catch((err) => {
-			  debugger
-			})
-	}
-
+	const formRef = useRef(null);
+	useEffect(() => {
+		formRef.current.submit();
+	  }, []);
     return (
-		<></>
-        // <>
-        //     <div className="container">
-        //         <h1>Checkout</h1>
-        //         <h2>Price</h2>
-        //         <h3>25$</h3>
-        //         <form action={`${process.env.REACT_APP_API_URL}/checkout/create-checkout-session/`} method="POST">
-        //         <input type="hidden" name="product_name" value="test_product" />
-        //         <input type="hidden" name="price" value={25 * 100} />
-        //             <button className="btn-checkout" type="submit" >Checkout</button>
-        //         </form>
-        //     </div>
-        // </>
-    )
+        <>
+            <div className="container">
+                <form ref={formRef}
+				action={`${API_URL}/payment/checkout/create-checkout-session/?userid=1`} method="GET">
+                    <button  className="btn-checkout" type="submit" >Checkout</button>
+                </form>
+            </div>
+        </>
+    );
 }
 
 export default Checkout;
