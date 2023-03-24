@@ -1,0 +1,2 @@
+export const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000'
+export const REACT_APP_STRIPE_KEY = process.env.REACT_APP_STRIPE_KEY || 'sk_test_51KJKa8Iyt0KDYKMZX6MlMQyicUPP168xvoZoFRXuKvZ4JZuhr8QTKv2TKL4f4lpKZuuhM8xsmuU78pWZSaJzR5hr00IgO4ljPp'
