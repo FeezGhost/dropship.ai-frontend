@@ -11,7 +11,7 @@ const Checkout = () => {
         <>
             <div className="container">
                 <form ref={formRef}
-				action={`${API_URL}/payment/checkout/create-checkout-session/?userid=1`} method="GET">
+				action={`${API_URL}/payment/checkout/create-checkout-session/?userid=15`} method="GET">
                     <button  className="btn-checkout" type="submit" >Checkout</button>
                 </form>
             </div>
