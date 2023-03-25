@@ -1,7 +1,31 @@
-import React from 'react'
-import { useSearchParams } from "react-router-dom";
+import React,{useEffect} from 'react'
+// import { useSearchParams } from "react-router-dom";
 
 function CheckoutSuccess() {
+
+  useEffect(()=>{
+    emailSuccess()
+  })
+
+  const emailSuccess = () => {
+    // const params=new useSearchParams(window.location.pathname)
+    debugger
+
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+      }),
+    }
+    fetch(
+      `${process.env.REACT_APP_API_URL}/auth/users/resend_activation/`,
+      requestOptions
+    ).then(async (response) => {
+      if (response.status != 200) {
+      } 
+    })
+  }
+
   return (
 	<div className="page-login d-flex align-items-center justify-content-center">
     <div className="card" >
