@@ -80,7 +80,7 @@ function Signup() {
 
     try{
 			let resp=await axios.post(`${process.env.REACT_APP_API_URL}/auth/users/`,requestOptions)
-      if (resp.status == 200) {
+      if (resp.status == 201) {
         Store.addNotification({
           title: "Congratulations!",
           message: "Confirmation email has been sent to your email",
