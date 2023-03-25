@@ -7,7 +7,7 @@ function CheckoutSuccess() {
     <div className="card" >
       <div className="card-body ">
       <div className="row m-5">
-      <span>Payment Success</span>
+      <span>Congratulations you have successfully subscribed!</span>
       </div>
       <form className="m-3">
       <div className="m-3 btn-div">
