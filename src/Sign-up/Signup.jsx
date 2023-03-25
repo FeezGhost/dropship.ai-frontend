@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom'
 import signupicon from '../assets/signup.png'
 import ResendEmail from '../ResendEmail/ResendEmail'
 import './Signup.css'
+import axios from 'axios'
 
 function Signup() {
   const [userName, setUserName] = useState(null)
@@ -70,27 +71,39 @@ function Signup() {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
         username: userName,
         email,
         password,
         confirmPassword,
-      }),
     }
 
-    fetch(`${process.env.REACT_APP_API_URL}/auth/users/`, requestOptions)
-      .then((resp) => {
-        if (resp.status == 200) {
-          debugger
-        } else if (resp.status == 401) {
-          setsignupError()
-        } else if (resp.status == 400) {
-          setEmailExists(true)
-        }
-      })
-      .catch((err) => {
-        debugger
-      })
+    try{
+			let resp=await axios.post(`${process.env.REACT_APP_API_URL}/auth/users/`,requestOptions)
+      if (resp.status == 200) {
+        console.log("success")
+      } else if (resp.status == 401) {
+        setsignupError()
+      } else if (resp.status == 400) {
+        setEmailExists(true)
+      }
+		}
+		catch(err){
+			console.error(err)
+		}
+
+    // fetch(`${process.env.REACT_APP_API_URL}/auth/users/`, requestOptions)
+    //   .then((resp) => {
+    //     if (resp.status == 200) {
+    //       debugger
+    //     } else if (resp.status == 401) {
+    //       setsignupError()
+    //     } else if (resp.status == 400) {
+    //       setEmailExists(true)
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     debugger
+    //   })
   }
 
   return (

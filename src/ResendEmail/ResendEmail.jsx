@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
+import axios from 'axios'
 
-// https://dropship-io.herokuapp.com/auth/users/reset_password/
 function ResendEmail({ usermail }) {
   const [email, setEmail] = useState(null)
   const [msg, showmsg] = useState('')
@@ -13,24 +13,33 @@ function ResendEmail({ usermail }) {
     }
   }
 
-  const resetPassword = () => {
+  const resetPassword = async () => {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
         email: email,
-      }),
     }
-    fetch(
-      'https://dropship-io.herokuapp.com/auth/users/resend_activation/',
-      requestOptions
-    ).then(async (response) => {
-      if (response.status != 200) {
+    try{
+			let resp=await axios.post(`${process.env.REACT_APP_API_URL}/auth/users/resend_activation/`,requestOptions)
+      if (resp.status != 200) {
         await showmsg('Email has been sent again')
       } else {
         await showmsg('')
       }
-    })
+		}
+		catch(err){
+			console.error(err)
+		}
+    // fetch(
+    //   'https://dropship-io.herokuapp.com/auth/users/resend_activation/',
+    //   requestOptions
+    // ).then(async (response) => {
+    //   if (response.status != 200) {
+    //     await showmsg('Email has been sent again')
+    //   } else {
+    //     await showmsg('')
+    //   }
+    // })
   }
 
   return (

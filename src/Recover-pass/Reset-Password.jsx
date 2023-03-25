@@ -1,12 +1,16 @@
 import React,{useState} from 'react'
 import {NavLink} from 'react-router-dom';
-import './Recover-pass.css'
-import Toast  from '../Toast/Toast';
 import axios from 'axios'
+import Toast from '../Toast/Toast';
+import { useLocation } from "react-router-dom";
+import queryString from 'query-string'
+import {useParams} from 'react-router-dom';
 
-// https://dropship-io.herokuapp.com/auth/users/reset_password/
-function Recover() {
+function ResetPassword() {
 	const [email,setEmail]=useState(null)
+	const {search}=useLocation()
+  	const {uuid,token}=queryString.parse(search)
+	const [err,seterr]=useState('')
 
 	const handleInputChange = async (e) => {
         const {id , value} = e.target;
@@ -17,20 +21,24 @@ function Recover() {
 
 	const resetPassword=async ()=>{
 		const requestOptions = {
-			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
-				email:email,
+			new_password:email,
+				uid:uuid,
+				token:token
 		};
 		let cont='Email has been sent to you'
 		let col='green'
 		try{
-			let resp=await axios.post(`${process.env.REACT_APP_API_URL}/auth/users/reset_password/`,requestOptions)
+			let resp=await axios.post(`${process.env.REACT_APP_API_URL}/auth/users/reset_password_confirm/`,requestOptions)
+			debugger
 			if(resp.status==204){
-				<Toast content={cont} color={col} />
+				seterr('')
+				// <Toast content={cont} color={col} />
 			}
 		}
 		catch(err){
 			console.error(err)
+			seterr("Password shouldn't be entirely numeric or too simple")
 		}
 	}
 
@@ -40,18 +48,19 @@ function Recover() {
 	<div className="card" >
 		<div className="card-body ">
 		<div className="row m-5">
-		<span className=''>Recover</span> <br/>
+		<span className=''>Reset</span> <br/>
 		<span className='dropship-ai'> Password</span> 
 		</div>
 		<form className="m-3">
 		<div className="mb-3">
-			<label for="email" className="form-label">Email address</label>
+			<label for="email" className="form-label">New Password</label>
 			<input type="email" className="form-control" id="email" aria-describedby="emailHelp" value={email}
-			onChange = {(e) => handleInputChange(e)} placeholder='Enter Your Email Address'/>
+			onChange = {(e) => handleInputChange(e)} placeholder='Enter Your New Password'/>
 		</div>
+		{err!='' && <div className="text-danger">{err}</div>}
 		<div className="m-3 btn-div">
 		<NavLink onClick={resetPassword} to="/recover" className="btn-login">
-			Send Email
+			Reset Password
 		</NavLink>
 		</div>
 		</form>
@@ -59,7 +68,7 @@ function Recover() {
 		</div>
 	</div>
 	</>
-  )
+	)
 }
 
-export default Recover
+export default ResetPassword

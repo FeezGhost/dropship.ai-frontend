@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import {NavLink} from 'react-router-dom';
 // import Toast from '../Toast/Toast';
 import './Login.css'
+import axios from 'axios';
 
 function Login() {
 
@@ -28,6 +29,22 @@ function Login() {
             setPassword(value);
         }
     }
+	const hasSubscription=async ()=>{
+		try{
+		  const requestOptions = {
+			headers: { 
+			  'Content-Type': 'application/json',
+			  'Authorization': `Bearer ${localStorage.getItem('token')}`
+		  },
+		  }
+		  let resp=await axios.get(`${process.env.REACT_APP_API_URL}/payment/subscription/verify/`,requestOptions)
+		  if(resp.status==200){
+			localStorage.setItem('isSubscribed',resp.data.isSubscribed)
+		  }
+		}
+		catch(err){
+		}
+	  }
 
 	const Login=async ()=>{
 		
@@ -47,29 +64,37 @@ function Login() {
 		{
 			setValidatePass(false)
 		}
-
 		const requestOptions = {
-			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({
-				username:email,
+			username:email,
 				password,
-				})
 		};
-		fetch('https://dropship-io.herokuapp.com/auth/jwt/create', requestOptions)
-			.then(response => {
-				if(response.status==200){
-					setloginerr('')
+
+		try{
+			let resp=await axios.post('https://dropship-io.herokuapp.com/auth/jwt/create',requestOptions)
+			if(resp.status==200){
+				
+				setloginerr('')
 					setshowloginerr(false)
-				}
-				else if (response.status==401){
-					setunauthPassword('No active account found with the given credentials')
-				}
-				else{
-					setloginerr()
-					setshowloginerr(true)
-				}
-			})
+					const token  =  resp.data.access;
+					await localStorage.setItem("token",token);
+					localStorage.setItem("refresh",resp.data.refresh);
+					hasSubscription();
+					// window.location.href = '/'
+			}
+			else if(resp.status==401)
+			{
+				setunauthPassword('No active account found with the given credentials')
+			}
+			else{
+				setloginerr()
+				setshowloginerr(true)
+			}
+
+		}
+		catch(err){
+			console.error(err)
+		}
 }
 
 
