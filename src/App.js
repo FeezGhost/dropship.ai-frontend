@@ -67,7 +67,7 @@ function App() {
         <Route exact path='/login'><Login/></Route> 
         <Route exact path='/signup'><Signup/></Route> 
         <Route exact path='/recover'><Recover/></Route> 
-        <Route exact path="/generate-product"><GenerateResults/></Route> 
+        <RouteGuard exact path="/generate-product" component={GenerateResults}/>
         <Route exact path="/resend-email"><ResendEmail/></Route> 
         <Route exact path="/email-confirmation"><EmailConfirmation/></Route> 
         <RouteGuard  exact path="/shop" component={Checkout} />
