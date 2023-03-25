@@ -3,6 +3,8 @@ import {NavLink} from 'react-router-dom';
 // import Toast from '../Toast/Toast';
 import './Login.css'
 import axios from 'axios';
+import { Store } from 'react-notifications-component';
+
 
 function Login() {
 
@@ -73,6 +75,18 @@ function Login() {
 		try{
 			let resp=await axios.post('https://dropship-io.herokuapp.com/auth/jwt/create',requestOptions)
 			if(resp.status==200){
+				Store.addNotification({
+					title: "You've logged in !",
+					type: "success",
+					insert: "top",
+					container: "top-right",
+					animationIn: ["animate__animated", "animate__fadeIn"],
+					animationOut: ["animate__animated", "animate__fadeOut"],
+					dismiss: {
+					  duration: 5000,
+					  onScreen: true
+					}
+				  });
 				
 				setloginerr('')
 					setshowloginerr(false)
@@ -80,7 +94,7 @@ function Login() {
 					await localStorage.setItem("token",token);
 					localStorage.setItem("refresh",resp.data.refresh);
 					hasSubscription();
-					// window.location.href = '/'
+					window.location.href = '/'
 			}
 			else if(resp.status==401)
 			{

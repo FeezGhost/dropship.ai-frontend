@@ -3,6 +3,7 @@ import {NavLink} from 'react-router-dom';
 import axios from 'axios'
 import Toast from '../Toast/Toast';
 import { useLocation } from "react-router-dom";
+import { Store } from 'react-notifications-component';
 import queryString from 'query-string'
 import {useParams} from 'react-router-dom';
 
@@ -33,6 +34,19 @@ function ResetPassword() {
 			debugger
 			if(resp.status==204){
 				seterr('')
+				Store.addNotification({
+					title: "Congratulations!",
+					message: "Password has been updated!",
+					type: "success",
+					insert: "top",
+					container: "top-right",
+					animationIn: ["animate__animated", "animate__fadeIn"],
+					animationOut: ["animate__animated", "animate__fadeOut"],
+					dismiss: {
+					  duration: 5000,
+					  onScreen: true
+					}
+				  });
 				// <Toast content={cont} color={col} />
 			}
 		}

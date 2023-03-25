@@ -21,6 +21,8 @@ import Checkout from './Checkout/Checkout';
 import ResetPassword from './Recover-pass/Reset-Password';
 import CheckoutSuccess from './Checkout/CheckoutSuccess';
 import CheckoutCancel from './Checkout/CheckoutCancel';
+import { ReactNotifications } from 'react-notifications-component';
+import 'react-notifications-component/dist/theme.css';
 import { REACT_APP_STRIPE_KEY } from './Config/Config'
 
 const stripe_key = REACT_APP_STRIPE_KEY
@@ -58,6 +60,7 @@ function App() {
       <>
       <Navbar/>
       <Elements stripe={stripePromise} >
+      <ReactNotifications />
       <Switch>
         <Route exact path='/'><Home/></Route> 
         <Route exact path='/about'><About/></Route>

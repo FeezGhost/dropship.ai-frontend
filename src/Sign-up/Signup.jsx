@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 // import Toast from '../Toast/Toast'
 import signupicon from '../assets/signup.png'
-import ResendEmail from '../ResendEmail/ResendEmail'
+import ResendEmail from '../ResendEmail/ResendEmail';
+import { Store } from 'react-notifications-component';
 import './Signup.css'
 import axios from 'axios'
 
@@ -80,7 +81,19 @@ function Signup() {
     try{
 			let resp=await axios.post(`${process.env.REACT_APP_API_URL}/auth/users/`,requestOptions)
       if (resp.status == 200) {
-        console.log("success")
+        Store.addNotification({
+          title: "Congratulations!",
+          message: "Confirmation email has been sent to your email",
+          type: "success",
+          insert: "top",
+          container: "top-right",
+          animationIn: ["animate__animated", "animate__fadeIn"],
+          animationOut: ["animate__animated", "animate__fadeOut"],
+          dismiss: {
+            duration: 5000,
+            onScreen: true
+          }
+        });
       } else if (resp.status == 401) {
         setsignupError()
       } else if (resp.status == 400) {
