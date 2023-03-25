@@ -1,6 +1,6 @@
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import '../node_modules/bootstrap/dist/js/bootstrap.bundle'
-import {Switch,Route,BrowserRouter,Routes,Redirect} from 'react-router-dom';
+import {Route,Routes} from 'react-router-dom';
 import { history } from './helper/history';
 import RouteGuard from './RouteGuard/RouteGuard';
 import { Elements } from '@stripe/react-stripe-js'
@@ -28,19 +28,20 @@ function App() {
       <>
       <Navbar/>
       <Elements stripe={stripePromise} >
-      <Switch>
-        <Route exact path='/' component={Home} />
-        <Route exact path='/about'><About/></Route>
-        <Route exact path='/login'><Login/></Route> 
-        <Route exact path='/signup'><Signup/></Route> 
-        <Route exact path='/recover'><Recover/></Route>
-        <Route exact path="/generate-product"><GenerateResults/></Route>
-        <Route exact path="/resend-email"><ResendEmail/></Route>
-        <Route exact path="/email-confirmation"><EmailConfirmation/></Route>
-        <Route exact path="/shop"><Checkout/></Route>
-        <Route exact path='/checkout/success/'><CheckoutSuccess/></Route>
-        <Route exact path='/checkout/failed/'><CheckoutCancel/></Route>
-      </Switch>
+      <Routes>
+        <Route exact path='/' element={<Home/>} />
+        <Route exact path='/about' element={<About/>}/>
+        <Route exact path='/login'element={<Login/>} />
+        <Route exact path='/signup' element={<Signup/>}/> 
+        <Route exact path='/recover'element={<Recover/>} />
+        <Route exact path="/generate-product" element={<GenerateResults/>} />
+        <Route exact path="/resend-email" element={<ResendEmail/>} />
+        <Route exact path="/email-confirmation" element={<EmailConfirmation/>} />
+        <RouteGuard  exact path="/shop"  element={<Checkout/>}/>
+        {/* <Route exact path="/shop" element={<Checkout/>} /> */}
+        <Route exact path='/checkout/success/' element={<CheckoutSuccess/>} />
+        <Route exact path='/checkout/failed/' element={<CheckoutCancel/>} />
+      </Routes>
       </Elements>
       </>
   );
