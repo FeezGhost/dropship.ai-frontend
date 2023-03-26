@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { NavLink } from 'react-router-dom';
 import './GenerateResults.css';
 import axios from 'axios';
+import vector from '../assets/Vector.png'
 import {Configuration, OpenAIApi} from 'openai'
 
 function GenerateResults() {
@@ -17,6 +18,14 @@ function GenerateResults() {
   const [web_designS,setWebDesign]=useState()
   const [ad_ideaS,setAdIdea]=useState()
   const [scaling,setScaling]=useState()
+  const [subscribed,setIsSubscribed]=useState()
+
+
+  useEffect=(()=>{
+	let subs=localStorage.getItem("isSubscribed")
+	setIsSubscribed(subs)
+	debugger
+  })
 
   
 
@@ -140,73 +149,85 @@ function GenerateResults() {
         </div>
       </div>:
 	  <div className='page-login d-flex align-items-center justify-content-center'>
-		<div className='row'>
 		  {/* {showToast ? <Toast color={color} content={content} /> : ''} */}
-		  <div className='col-10 mx-auto'>
 			<div className='row'>
-			  <div className='col-md-7 ml-5 pt-5 pt-lg-0 order-2 order-lg-2 d-flex justify-content-center flex-column '>
+			  <div className='col-9 d-flex justify-content-center flex-column '>
 				<h1>
 				  <span className='dropship-ai'> DropShip.Ai</span><br />
 				  <span className=''> Results</span> 
 				</h1>
 				<form className='mt-2'>
-				  <div >
+				  <div  className='d-flex justify-content-center flex-column'>
 					<label for='userName' className='form-label'>
 					  Product
 					</label>
 					<input
 					  type='email'
-					  className='form-control'
+					  className='form-control sp-input'
 					  id='userName'
 					  aria-describedby='emailHelp'
 					  value={prodS}
 					/>
 				  </div>
-				  <div >
+				  <div  className='d-flex justify-content-center flex-column'>
 					<label for='email' className='form-label'>
 					  Store Name
 					</label>
 					<input
 					  type='email'
-					  className='form-control'
+					  className='form-control sp-input'
 					  id='email'
 					  aria-describedby='emailHelp'
 					  value={storNameS}
 					  placeholder='Name'
 					/>
 				  </div>
-				  <div >
+				  <div  className='d-flex justify-content-center flex-column'>
 					<label for='password' className='form-label'>
 					  Platform
 					</label>
+					
 					<input
 					  type='email'
-					  className='form-control'
+					  className='form-control sp-input'
 					  id='password'
 					  value={platformS}
 					  placeholder='Enter Password'
 					/>
 				  </div>
-				  <div >
+				  <div  className='d-flex justify-content-center flex-column'>
 					<label for='confirmPassword' className='form-label'>
 					  Social Media Username
+					  {subscribed !=true ? <img
+                    src={vector}
+                    alt='socials'
+                    className='img-fluid animated sp-img'
+                    /> :''}
 					</label>
+					
 					<input
 					  type='email'
 					  value={usernames}
-					  className='form-control'
+					  className='form-control sp-input'
 					  id='confirmPassword'
 					  placeholder='Confirm Password'
+					  onBlur={true}
 					/>
 				  </div>
-				  <div >
+				  <div  className='d-flex justify-content-center flex-column'>
 					<label for='confirmPassword' className='form-label'>
 					  Bio
+					  {subscribed !=true ? <img
+                    src={vector}
+                    alt='socials'
+                    className='img-fluid animated sp-img'
+                    /> :''}
 					</label>
+				
 					<input
 					  type='email'
 					  value={bioS}
-					  className='form-control'
+					  className='form-control sp-input '
 					  id='confirmPassword'
 					  placeholder='Confirm Password'
 					/>
@@ -223,38 +244,55 @@ function GenerateResults() {
 					  placeholder='Confirm Password'
 					/>
 				  </div> */}
-				  <div >
+				  <div  className='d-flex justify-content-center flex-column'>
 					<label for='confirmPassword' className='form-label'>
 					  Marketing Campaign
+					  {subscribed !=true ? <img
+                    src={vector}
+                    alt='socials'
+                    className='img-fluid animated sp-img' 
+                    /> :''}
 					</label>
+					
 					<input
 					  type='email'
 					  value={marketing_campaignS}
-					  className='form-control'
+					  className='form-control sp-input'
 					  id='confirmPassword'
 					  placeholder='Confirm Password'
 					/>
 				  </div>
-				  <div >
+				  <div  className='d-flex justify-content-center flex-column'>
 					<label for='confirmPassword' className='form-label'>
 					  Web Design
+					  {subscribed !=true ? <img
+                    src={vector}
+                    alt='socials'
+                    className='img-fluid animated sp-img'
+                    /> :''}
 					</label>
+					
 					<input
 					  type='email'
 					  value={web_designS} 
-					  className='form-control'
+					  className='form-control sp-input'
 					  id='confirmPassword'
 					  placeholder='Confirm Password'
 					/>
 				  </div>
-				  <div className='mb-3'>
+				  <div className='mb-3 d-flex justify-content-center flex-column'>
 					<label for='confirmPassword' className='form-label'>
-					  Ad Idea
+					  Ad Idea 
+					  {subscribed !=true ? <img
+                    src={vector}
+                    alt='socials'
+                    className='img-fluid animated sp-img'
+                    /> :''}
 					</label>
 					<input
 					  type='email'
 					  value={ad_ideaS}
-					  className='form-control'
+					  className='form-control sp-input' 
 					  id='confirmPassword'
 					  placeholder='Confirm Password'
 					/>
@@ -275,13 +313,11 @@ function GenerateResults() {
 				<div className='mt-3'>
 				</div>
 				<div className='mt-3'>
-				  if you already have an account click{' '}
-				  <NavLink to='/login'> here</NavLink> to login
+				To Unlock the FULL POWER of DropShip.AI buy the premium version now!  Click here {' '}
+				  <NavLink to='/shop'> here</NavLink> 
 				</div>
 			  </div>
 			</div>
-		  </div>
-		</div>
 	  </div>
 	}
       

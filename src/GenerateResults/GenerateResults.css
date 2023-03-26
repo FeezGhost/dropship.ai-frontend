@@ -15,3 +15,26 @@
     flex-direction: column;
     margin-top: 9rem;
 }
+
+.form-label{
+    margin:1rem
+}
+
+
+.sp-input {
+    border:1px solid #ddd;
+    border-right:none;
+    float: left;
+}
+input:focus {
+    outline:none;
+} 
+.sp-img {
+    float: right;
+    margin-right: auto;
+    height: 18px;
+    width: 19px;
+    border: 1px solid #ddd;
+    border-left: none;
+    margin-top: 1rem
+} 
