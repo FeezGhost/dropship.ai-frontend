@@ -32,7 +32,6 @@ function App() {
   useEffect(()=>{
     setTimeout(async () => {
       try{
-        debugger
         if(localStorage.getItem("refresh") !=undefined){
           const requestOptions = {
             headers: { 'Content-Type': 'application/json',
@@ -50,10 +49,7 @@ function App() {
         console.error(err)
       }
     }, 300000);
-
   })
-
-
 
 
   return (
