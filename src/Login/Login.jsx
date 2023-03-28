@@ -176,6 +176,10 @@ function Login() {
                   Login
                 </NavLink>
                 <p>
+                  Don't have account?{' '}
+                  <NavLink to='/signup'> Signup</NavLink>
+                </p>
+                <p>
                   If you forgot you password click{' '}
                   <NavLink to='/recover'> here</NavLink>
                 </p>

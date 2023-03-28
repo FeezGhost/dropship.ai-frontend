@@ -8,6 +8,7 @@ import './Signup.css'
 import axios from 'axios'
 
 function Signup() {
+  debugger
   const [userName, setUserName] = useState(null)
   const [email, setEmail] = useState(null)
   const [password, setPassword] = useState(null)
@@ -70,7 +71,6 @@ function Signup() {
       setValidateemail(false)
     }
     const requestOptions = {
-      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
         username: userName,
         email,
@@ -79,7 +79,11 @@ function Signup() {
     }
 
     try{
+
 			let resp=await axios.post(`${process.env.REACT_APP_API_URL}/auth/users/`,requestOptions)
+      if(!resp){
+        debugger
+      }
       if (resp.status == 201) {
         Store.addNotification({
           title: "Congratulations!",
@@ -94,13 +98,18 @@ function Signup() {
             onScreen: true
           }
         });
-      } else if (resp.status == 401) {
-        setsignupError()
       } else if (resp.status == 400) {
+        debugger
         setEmailExists(true)
+        // setsignupError()
+      } else if (resp.status == 401) {
+        // setEmailExists(true)
       }
 		}
 		catch(err){
+      if(err.response.status==400){
+        setEmailExists(true)
+      }
 			console.error(err)
 		}
 

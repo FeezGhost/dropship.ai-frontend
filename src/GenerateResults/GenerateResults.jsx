@@ -2,7 +2,8 @@ import React, { useState,useEffect } from 'react'
 import { NavLink } from 'react-router-dom';
 import './GenerateResults.css';
 import axios from 'axios';
-import vector from '../assets/Vector.png'
+import vector from '../assets/Vector.png';
+import { Oval } from 'react-loader-spinner'
 import {Configuration, OpenAIApi} from 'openai'
 
 function GenerateResults() {
@@ -119,6 +120,22 @@ function GenerateResults() {
               <span className=''>Generating</span> <br />
               <span className='dropship-ai'> Results...</span>
             </div>
+			{dis==true?
+			<Oval
+			height={80}
+			width={80}
+			color="blue"
+			wrapperStyle={{}}
+			wrapperClass=""
+			visible={true}
+			ariaLabel='oval-loading'
+			secondaryColor="blue"
+			strokeWidth={2}
+			strokeWidthSecondary={2}
+		  
+		  />
+			:''}
+			
             <form className='m-3'>
               <div className='m-3 btn-div'>
                 <button
@@ -312,10 +329,11 @@ function GenerateResults() {
 				</form>
 				<div className='mt-3'>
 				</div>
+				{subscribed !=true ?
 				<div className='mt-3'>
 				To Unlock the FULL POWER of DropShip.AI buy the premium version now!  Click here {' '}
 				  <NavLink to='/shop'> here</NavLink> 
-				</div>
+				</div>:''}
 			  </div>
 			</div>
 	  </div>

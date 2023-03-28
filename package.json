@@ -25,6 +25,7 @@
     "react-bootstrap": "^2.7.2",
     "react-dom": "^18.2.0",
     "react-fetch-hook": "^1.9.5",
+    "react-loader-spinner": "^5.3.4",
     "react-notifications-component": "^4.0.1",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^5.3.0",

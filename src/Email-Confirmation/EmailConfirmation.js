@@ -1,7 +1,8 @@
 import React,{useEffect} from 'react'
 import { useLocation } from "react-router-dom";
-import queryString from 'query-string'
-import axios from 'axios'
+import queryString from 'query-string';
+import { NavLink } from 'react-router-dom';
+import axios from 'axios';
 
 
 function EmailConfirmation() {
@@ -28,13 +29,6 @@ function EmailConfirmation() {
 		catch(err){
 			console.error(err)
 		}
-    // fetch(
-    //   `${process.env.REACT_APP_API_URL}/auth/users/activation/`,
-    //   requestOptions
-    // ).then(async (response) => {
-    //   if (response.status != 200) {
-    //   } 
-    // })
   }
 
   return (
@@ -49,6 +43,10 @@ function EmailConfirmation() {
       </div>
       </form>
       </div>
+      <div className='mt-3'>
+                    Click{' '}
+          <NavLink to='/login'> here</NavLink> to login
+        </div>
       </div>
     </div>
   )
