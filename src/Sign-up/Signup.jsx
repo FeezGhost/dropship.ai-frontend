@@ -8,7 +8,6 @@ import './Signup.css'
 import axios from 'axios'
 
 function Signup() {
-  debugger
   const [userName, setUserName] = useState(null)
   const [email, setEmail] = useState(null)
   const [password, setPassword] = useState(null)
@@ -82,7 +81,6 @@ function Signup() {
 
 			let resp=await axios.post(`${process.env.REACT_APP_API_URL}/auth/users/`,requestOptions)
       if(!resp){
-        debugger
       }
       if (resp.status == 201) {
         Store.addNotification({
@@ -99,7 +97,6 @@ function Signup() {
           }
         });
       } else if (resp.status == 400) {
-        debugger
         setEmailExists(true)
         // setsignupError()
       } else if (resp.status == 401) {

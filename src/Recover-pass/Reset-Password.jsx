@@ -31,7 +31,6 @@ function ResetPassword() {
 		let col='green'
 		try{
 			let resp=await axios.post(`${process.env.REACT_APP_API_URL}/auth/users/reset_password_confirm/`,requestOptions)
-			debugger
 			if(resp.status==204){
 				seterr('')
 				Store.addNotification({

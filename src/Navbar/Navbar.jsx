@@ -1,12 +1,17 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import './Navbar.css'
 import Nav from 'react-bootstrap/Nav';
 import { NavLink } from 'react-router-dom'
 
 function Navbar() {
+
+
+
+
+
   return (
   <>
-  <div className="container-fluid nav_bg "> 
+  <div className="container-fluid nav_bg navbar-reset"> 
   <div className="row">
     <div className="col-10 mx-auto">
 	<nav className="navbar navbar-expand-lg navbar-light bg-light navbar-resize">

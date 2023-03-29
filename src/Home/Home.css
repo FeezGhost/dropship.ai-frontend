@@ -240,6 +240,10 @@ border-radius: 8px;
 	text-align: center;
 }
 
+.offer{
+	color: rgba(90, 87, 194, 1);
+}
+
 .btn-sign-up{
 	color:rgb(255, 253, 253);
 	text-decoration: none;
@@ -444,4 +448,95 @@ border-radius: 8px;
 	cursor: pointer;
 	}
 
+  }
+
+  @media screen and (max-width: 400px) {
+	.rectangle{
+		margin-left:2rem;
+		width: 11rem;
+	}
+	.rectangle-three{
+		margin-left:2rem;
+		width: 11rem;
+	}
+	.rectangle-two{
+		margin-left: 1rem;
+		width: 14rem;
+	}
+	.dropship{
+		font-size:3rem;
+	}
+	.ai{
+		font-size:3rem;
+	}
+
+	.blur{
+		width: 53rem;
+		height: 47rem;
+		border-radius: 0 0 80% 0%;
+		top: -25%;
+		left: -3%;
+		/* width: 53rem;
+		height: 45rem;
+		border-radius: 0 0 54% 0%;
+		top: -25%;
+    	left: -6%; */
+	}
+	.rect-one{
+		margin:1rem 0rem 0rem -1rem;
+	}
+	.rect-two{
+		margin:1rem 0rem 0rem -1rem;
+	}
+	.rect-three{
+		margin:1rem 0rem 0rem -1rem;
+	}
+
+	.socials{
+		display: none;
+	}
+	.section-two-row{
+		margin-top:0rem;
+		margin-left: -3rem
+	}
+	.btn-yes{
+		width: 48% !important
+	}
+	.box-img{
+		display: none;
+	}
+	.streamline-section{
+		margin-top:1rem;
+		width: 28rem;
+		margin-left: -3rem;
+	}
+	.testimonial-2{
+		width: 23rem;
+		margin-left: 2rem;
+
+	}
+	.revolution-ai{
+		margin-top:0rem
+	}
+	.cred-customers{
+		margin-top: 3rem;
+	}
+	br {
+		display: none;
+	}
+	.revolution-ai h7{
+		font-size: 24px;
+	}
+	.carousel-status{
+		display: none
+	}
+	.credible-cus-text{
+		font-size: 2rem;
+	}
+	.assess-text{
+		font-size: 2rem;
+	}
+	.carosoul{
+		margin-top: 1rem;
+	}
   }

@@ -30,7 +30,7 @@ function Login() {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       }
-	  debugger
+	  
       let resp = await axios.get(
         `${process.env.REACT_APP_API_URL}/payment/subscription/verify/`,
         requestOptions
@@ -134,7 +134,7 @@ function Login() {
               <span className='dropship-ai'> DropShip.Ai</span>
             </div>
             <form className='m-3'>
-              <div className='mb-3'>
+              <div className='col-md-2'>
                 <label for='email' className='form-label'>
                   Username
                 </label>

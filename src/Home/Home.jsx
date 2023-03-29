@@ -11,7 +11,6 @@ import { NavLink } from 'react-router-dom';
 import mblInteract from '../assets/mbl-interact.png';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import './Home.css';
 
@@ -41,8 +40,8 @@ function Home() {
 							</NavLink>
 						</div>
 					</div>
-					<div className='col-lg-6 order-2 order-lg-2 header-img d-flex justify-content-center flex-column'>
-						<img src={socials} alt="socials" className='img-fluid animated'/>
+					<div className='col-lg-6 order-2 order-lg-2 header-img d-flex justify-content-center flex-column socials-div'>
+						<img src={socials} alt="socials" className='socials img-fluid-animated'/>
 					</div>
 					</div>
 				</div>
@@ -52,7 +51,7 @@ function Home() {
 	<section id="header" className="d-flex align-items-center " style={{marginTop:'10rem'}}>
 		 <div className="container-fluid nav_bg"> 
 			<div className="row">
-					<div className='col-md-6 ml-5 pt-5 pt-lg-0 order-2 order-lg-1 d-flex justify-content-center backdrop-blur'>
+					<div className='col-md-6 ml-5 pt-5 pt-lg-0 order-1 order-lg-1 d-flex justify-content-center backdrop-blur'>
 						<div className="flex-row">
 							<div className="rectangle">
 										<img src={board} alt="ai-board"/> <br/>
@@ -67,7 +66,7 @@ function Home() {
 							<img src={userfriendly} alt="ai-board"/> <br/>
 						</div> 
 					</div>
-					<div className='col-md-5 ml-5 pt-5 pt-lg-0 order- order-lg-2 d-flex justify-content-center flex-column'>
+					<div className='col-md-5 ml-5 pt-5 pt-lg-0 order-2 order-lg-2 d-flex justify-content-center flex-column'>
                         <h1> 
                             <span className='are-you'> Why you</span> <br/>
                             <span className='ready'> Choose us?</span> 
@@ -103,7 +102,7 @@ function Home() {
 						</div>
 					</div>
 					<div className='col-lg-3  order-2 order-lg-2 cart-img d-flex ml-auto'>
-						<img src={cartbox} alt="socials" className='img-fluid animated'/>
+						<img src={cartbox} alt="socials" className='box-img img-fluid animated'/>
 					</div>
 					</div>
 				</div>
@@ -191,18 +190,17 @@ function Home() {
 	<section id="header" className="d-flex align-items-center mt-10 streamline-section">
 		 <div className="container-fluid nav_bg"> 
 		 <div className="row">
-		 <div className="col-10 mx-auto ">
+		 <div className="col-10 mx-auto cred-customers">
 			<span className='credible-cus-text'>Credible customers <br/> </span>
 			<span className='assess-text'> assessments.</span>
 		</div>
 		 </div>
-		 <div className="row">
+		 <div className="row carosoul">
 		 <Carousel>
         <div key="slide1" className='selected-slide'>
 		<div className="testimonial-2">
 			<h5 className='testimonial-heading'>Asim</h5>
 			<p  className='testimonial-main' >Hey there, I'm Kristina! I've called Western New York and Niagara Falls, NY home for most of my life, and am excited and eager to share its charm, history, and beauty with as many people as possible.</p>
-			<FontAwesomeIcon icon="fa-regular fa-star" />
 			<h7 className='testimonial-btm'>Asim</h7>
 		</div>
         </div>
@@ -210,7 +208,6 @@ function Home() {
 		<div className="testimonial-2">
 			<h5 className='testimonial-heading'>Adrian</h5>
 			<p  className='testimonial-main' >Hey there, I'm Kristina! I've called Western New York and Niagara Falls, NY home for most of my life, and am excited and eager to share its charm, history, and beauty with as many people as possible.</p>
-			<FontAwesomeIcon icon="fa-regular fa-star" />
 			<h7 className='testimonial-btm'>Adrian</h7>
 		</div>
         </div>
@@ -229,7 +226,7 @@ function Home() {
 							<span className='upgrade'> UPGRADE</span> 
 							<span className='premium'> TO  PREMIUM</span> 
 						</h1>
-						<h7>UNLOCK ALL FEATURES - when you upgrade for a measly 7$ a month, you get access to the full functionality of DropShip.ai, and MORE!
+						<h7>UNLOCK ALL FEATURES - when you upgrade for a measly <span className='offer'>7$ a month, </span> you get access to the full functionality of DropShip.ai, and MORE!
 						You will also be privy to ZERO price increase when we inevitably upgrade out systems, and become more and more advanced.</h7>
 						<div className="mt-3">
 							<NavLink to="/signup" className="btn-sign-up">

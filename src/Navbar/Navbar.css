@@ -17,3 +17,18 @@
 .blur-three{
 	z-index: 9999;
 }
+
+
+@media screen and (max-width: 400px) {
+	.navbar-reset{
+		width: 30rem;
+		margin-left: -2rem;
+
+	}
+	.blur-three{
+		z-index: 9999 !important;
+	}
+	.navbar-toggler{
+		z-index: 9999 !important;
+	}
+}

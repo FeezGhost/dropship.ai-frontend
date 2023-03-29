@@ -2,7 +2,6 @@ import React from 'react';
 import './Toast.css'
 
 function Toast({content,color}) {
-	debugger
 
   return (
 	<>

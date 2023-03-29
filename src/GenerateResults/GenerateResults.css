@@ -21,11 +21,11 @@
 }
 
 
-.sp-input {
+/* .sp-input {
     border:1px solid #ddd;
     border-right:none;
     float: left;
-}
+} */
 input:focus {
     outline:none;
 } 
@@ -39,10 +39,24 @@ input:focus {
     margin-top: 1rem
 } 
 
+@media screen and (max-width: 400px) 
+{
+    .page-login {
+        margin-left: 6rem;
+    }
+}
+
 /* .oval-loading{
     margin-left:9rem !important
 } */
 
 .ov{
     margin-left:9rem !important
+}
+
+@media screen and (max-width: 400px) 
+{
+    .form-control{
+		width:100%
+	}
 }

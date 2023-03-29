@@ -25,7 +25,6 @@ function GenerateResults() {
   useEffect=(()=>{
 	let subs=localStorage.getItem("isSubscribed")
 	setIsSubscribed(subs)
-	debugger
   })
 
   
