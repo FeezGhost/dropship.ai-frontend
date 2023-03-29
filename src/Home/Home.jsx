@@ -33,10 +33,10 @@ function Home() {
 							<span className='dropship'> DropShip.</span> 
 							<span className='ai'> Ai</span> 
 						</h1>
-						<h7>An AI-powered drop shipping starter kit. tool designed to make your drop shipping journey as easy and quick as possible.</h7>
-						<div className="mt-3">
+						<h7 className="sm-text">An AI-powered drop shipping starter kit. tool designed to <br/> make your drop shipping journey as easy and quick as <br/> possible.</h7>
+						<div className="mt-5">
 							<NavLink to="/signup" className="btn-get-started">
-								Create Your Account
+								Create your Account
 							</NavLink>
 						</div>
 					</div>
@@ -48,8 +48,8 @@ function Home() {
 				</div>
 			</div>
 	</section>
-	<section id="header" className="d-flex align-items-center mt-5">
-		 <div className="container-fluid nav_bg mt-5"> 
+	<section id="header" className="d-flex align-items-center " style={{marginTop:'10rem'}}>
+		 <div className="container-fluid nav_bg"> 
 			<div className="row">
 					<div className='col-md-6 ml-5 pt-5 pt-lg-0 order-2 order-lg-1 d-flex justify-content-center backdrop-blur'>
 						<div className="flex-row">
@@ -71,7 +71,7 @@ function Home() {
                             <span className='are-you'> Why you</span> <br/>
                             <span className='ready'> Choose us?</span> 
                         </h1>
-                        <h7>Choose our AI-powered starter kit for efficient, beginner-friendly drop shipping. Improved productivity, profitability and expert support ensure success.</h7>
+                        <h7>Choose our AI-powered starter kit for efficient, beginner-<br/>friendly drop shipping. Improved productivity, profitability <br/> and expert support ensure success.</h7>
                         <div className="mt-3">
                             <p>
                             <NavLink to="/" className="">
@@ -84,7 +84,7 @@ function Home() {
 			</div>
 			</div>
 	</section>
-	<section id="header" className="d-flex align-items-center mt-3">
+	<section id="header" className="d-flex align-items-center mt-0">
 		 <div className="container-fluid nav_bg"> 
 			<div className="row">
 				<div className="col-10 mx-auto">
@@ -169,7 +169,7 @@ function Home() {
 			<div className="row">
 				<div className="col-10 mx-auto">
 					<div className='row'>
-					<div className='col-md-9 ml-5 pt-5 pt-lg-0 order-2 order-lg-2 d-flex justify-content-center flex-column revolution-ai'>
+					<div className='col-md-9 ml-5 pt-5 pt-lg-0 order-2 order-lg-2 d-flex justify-content-center flex-column revolution-ai' >
 						<h7>Revolutionize Your Drop Shipping with AI-Enabled, Beginner-Friendly <br/>Tools for Increased Efficiency and Profitability</h7>
 						<div className="mt-3">
 							<p>
@@ -197,13 +197,13 @@ function Home() {
 		 </div>
 		 <div className="row">
 		 <Carousel>
-        <div key="slide1" style={{ padding: 40, height: 300, marginLeft:'30rem' }}>
+        <div key="slide1" className='selected-slide'>
 		<div className="testimonial-2">
 			<h5>Asim</h5>
 			<p>Hey there, I'm Kristina! I've called Western New York and Niagara Falls, NY home for most of my life, and am excited and eager to share its charm, history, and beauty with as many people as possible.</p>
 		</div>
         </div>
-        <div key="slide2" style={{ padding: 40, height: 300, marginLeft:'30rem' }}>
+        <div key="slide2" className='selected-slide'>
 		<div className="testimonial-2">
 			<h5>Adrian</h5>
 			<p>Hey there, I'm Kristina! I've called Western New York and Niagara Falls, NY home for most of my life, and am excited and eager to share its charm, history, and beauty with as many people as possible.</p>

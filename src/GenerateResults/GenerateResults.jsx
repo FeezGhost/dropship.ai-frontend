@@ -121,6 +121,7 @@ function GenerateResults() {
               <span className='dropship-ai'> Results...</span>
             </div>
 			{dis==true?
+			<div className='ov'>
 			<Oval
 			height={80}
 			width={80}
@@ -134,6 +135,7 @@ function GenerateResults() {
 			strokeWidthSecondary={2}
 		  
 		  />
+		  </div>
 			:''}
 			
             <form className='m-3'>

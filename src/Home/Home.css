@@ -14,16 +14,22 @@
 	font-size: 6rem
 }
 
+.sm-text{
+	font-size: 18px;
+	font-weight: 300;
+	color: rgba(88, 88, 87, 1);
+}
+
 .btn-get-started{
 	border: 1px solid #8CC63F;
-	border-radius: 26px;
+	border-radius: 30px;
 	font-size: 20px;
 	cursor: pointer;
 	background: #8CC63F;
 	text-align: center;
 	color: white;
 	height: 3rem;
-	padding: 0.5rem;
+	padding: 1rem;
 	margin:0.5rem;
 	text-decoration: none;
 }
@@ -37,7 +43,8 @@
 	text-align: center;
 	color: white;
 	height: 3rem;
-	padding: 0.5rem;
+	padding: 1rem;
+	width: 2000rem;
 	margin:0.5rem;
 	text-decoration: none;
 	justify-content: center;
@@ -45,10 +52,17 @@
 
 }
 
+.selected-slide{
+	display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .revolution-ai{
 	align-items: center;
-	font-size:24px;
+	font-size:34px;
 	font-weight: 300;
+	margin-top: -8rem;
 }
 
 .btn-yes{
@@ -338,7 +352,7 @@ border-radius: 8px;
 }
 
 .section-two-row{
-	margin-top: 13rem;
+	margin-top: 10rem;
 }
 
   .cor-test{

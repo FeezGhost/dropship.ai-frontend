@@ -38,3 +38,11 @@ input:focus {
     border-left: none;
     margin-top: 1rem
 } 
+
+/* .oval-loading{
+    margin-left:9rem !important
+} */
+
+.ov{
+    margin-left:9rem !important
+}
