@@ -11,6 +11,7 @@ import { NavLink } from 'react-router-dom';
 import mblInteract from '../assets/mbl-interact.png';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import './Home.css';
 
@@ -199,14 +200,18 @@ function Home() {
 		 <Carousel>
         <div key="slide1" className='selected-slide'>
 		<div className="testimonial-2">
-			<h5>Asim</h5>
-			<p>Hey there, I'm Kristina! I've called Western New York and Niagara Falls, NY home for most of my life, and am excited and eager to share its charm, history, and beauty with as many people as possible.</p>
+			<h5 className='testimonial-heading'>Asim</h5>
+			<p  className='testimonial-main' >Hey there, I'm Kristina! I've called Western New York and Niagara Falls, NY home for most of my life, and am excited and eager to share its charm, history, and beauty with as many people as possible.</p>
+			<FontAwesomeIcon icon="fa-regular fa-star" />
+			<h7 className='testimonial-btm'>Asim</h7>
 		</div>
         </div>
         <div key="slide2" className='selected-slide'>
 		<div className="testimonial-2">
-			<h5>Adrian</h5>
-			<p>Hey there, I'm Kristina! I've called Western New York and Niagara Falls, NY home for most of my life, and am excited and eager to share its charm, history, and beauty with as many people as possible.</p>
+			<h5 className='testimonial-heading'>Adrian</h5>
+			<p  className='testimonial-main' >Hey there, I'm Kristina! I've called Western New York and Niagara Falls, NY home for most of my life, and am excited and eager to share its charm, history, and beauty with as many people as possible.</p>
+			<FontAwesomeIcon icon="fa-regular fa-star" />
+			<h7 className='testimonial-btm'>Adrian</h7>
 		</div>
         </div>
     </Carousel>

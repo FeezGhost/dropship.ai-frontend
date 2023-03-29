@@ -21,13 +21,13 @@ function Navbar() {
           <NavLink className="nav-link" activeClassName="menu_active" 
           exact to="/">Home</NavLink>
         </li>
-        <li className="nav-item">
+        {/* <li className="nav-item">
           <NavLink  className="nav-link" to="/about"  activeClassName="menu_active">About Us</NavLink>
-        </li>
+        </li> */}
         <li className="nav-item">
           <NavLink  className="nav-link" to="/shop" activeClassName="menu_active">Shop</NavLink>
         </li>
-        <li className="nav-item">
+        {/* <li className="nav-item">
           <NavLink  className="nav-link" to="/faq" activeClassName="menu_active">FAQ</NavLink>
         </li>
         <li className="nav-item">
@@ -35,7 +35,7 @@ function Navbar() {
         </li>
         <li className="nav-item">
           <NavLink  className="nav-link" to="/account" activeClassName="menu_active">My Account</NavLink>
-        </li>
+        </li> */}
       </ul>
     </div>
   </div>
