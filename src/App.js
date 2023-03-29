@@ -29,27 +29,36 @@ const stripe_key = REACT_APP_STRIPE_KEY
 const stripePromise = loadStripe(stripe_key)
 
 function App() {
-  useEffect(()=>{
-    setTimeout(async () => {
-      try{
-        if(localStorage.getItem("refresh") !=undefined){
-          const requestOptions = {
-            headers: { 'Content-Type': 'application/json',
+  useEffect( ()=>{
+    checkToken();
+  })
+  const checkToken=async()=>{
+    if(localStorage.getItem("token") !=undefined){
+      try {
+        const requestOptions = {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
-            refresh:localStorage.getItem("refresh")
-          }
-          let resp=await axios.post(`${process.env.REACT_APP_API_URL}/auth/jwt/refresh/`,requestOptions)
-          if (resp.status == 200) {
-            localStorage.removeItem('token')
-            localStorage.setItem("token",resp.data.access)
-          }
+        }
+        let resp = await axios.get(
+          `${process.env.REACT_APP_API_URL}/payment/subscription/verify/`,
+          requestOptions
+        )
+        
+        if (resp.status == 200) {
+
+          localStorage.setItem('isSubscribed', resp.data.isSubscribed)
+        }
+      } catch (err) {
+        if(err.response.status==401){
+          localStorage.removeItem("token");
+          localStorage.removeItem("refresh");
+          localStorage.removeItem("isSubscribed");
         }
       }
-      catch(err){
-        console.error(err)
-      }
-    }, 300000);
-  })
+    }
+  }
 
 
   return (
