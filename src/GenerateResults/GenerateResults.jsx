@@ -27,8 +27,6 @@ function GenerateResults() {
 	setIsSubscribed(subs)
   })
 
-  
-
   const configuration = new Configuration({
 	apiKey: process.env.REACT_APP_API_KEY,
   });
@@ -52,6 +50,13 @@ function GenerateResults() {
 	}
 	
   }
+
+   const regenerateProduct=async ()=>{
+	await setdata(false);
+	setData()
+	setdisable(true);
+	setError('');
+   }
 
   	let store_name;
 	let platform;
@@ -330,6 +335,18 @@ function GenerateResults() {
 				</form>
 				<div className='mt-3'>
 				</div>
+				{subscribed !=true ?
+				<div>
+				 <button
+				 type='button'
+				 disabled={dis}
+				 onClick={regenerateProduct}
+				 className='btn btn-primary'
+			   >
+				 Generate Product
+			   </button>
+			   </div>
+			 :''}
 				{subscribed !=true ?
 				<div className='mt-3'>
 				To Unlock the FULL POWER of DropShip.AI buy the premium version now!  Click here {' '}
