@@ -42,7 +42,8 @@ input:focus {
 @media screen and (max-width: 400px) 
 {
     .page-login {
-        margin-left: 6rem;
+        /* margin-left: 6rem; */
+        margin-left: 0rem;
     }
 }
 

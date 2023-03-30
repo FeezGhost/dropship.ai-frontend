@@ -21,8 +21,10 @@
 
 @media screen and (max-width: 400px) {
 	.navbar-reset{
-		width: 30rem;
-		margin-left: -2rem;
+		/* width: 30rem;
+		margin-left: -2rem; */
+		width: 100%;
+		margin-left: 0;
 
 	}
 	.blur-three{
