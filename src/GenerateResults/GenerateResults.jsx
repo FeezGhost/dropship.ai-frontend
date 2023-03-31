@@ -23,8 +23,8 @@ function GenerateResults() {
 
 
   useEffect=(()=>{
-	let subs=localStorage.getItem("isSubscribed")
-	setIsSubscribed(subs)
+	// let subs=localStorage.getItem("isSubscribed")
+	// setIsSubscribed(subs)
   })
 
   const configuration = new Configuration({
@@ -212,10 +212,11 @@ function GenerateResults() {
 					
 					<input
 					  type='email'
-					  className='form-control sp-input'
+					  className='form-control'
 					  id='password'
 					  value={platformS}
-					  placeholder='Enter Password'
+					  placeholder='Enter P'
+					  readonly
 					/>
 				  </div>
 				  <div  className='d-flex justify-content-center flex-column'>
@@ -231,10 +232,10 @@ function GenerateResults() {
 					<input
 					  type='email'
 					  value={usernames}
-					  className='form-control sp-input'
+					  className={!subscribed?'form-control blr-field':'form-control '}
 					  id='confirmPassword'
 					  placeholder='Confirm Password'
-					  onBlur={true}
+					  readonly
 					/>
 				  </div>
 				  <div  className='d-flex justify-content-center flex-column'>
@@ -250,9 +251,10 @@ function GenerateResults() {
 					<input
 					  type='email'
 					  value={bioS}
-					  className='form-control sp-input '
+					  className={!subscribed?'form-control blr-field':'form-control '}
 					  id='confirmPassword'
 					  placeholder='Confirm Password'
+					  readonly
 					/>
 				  </div>
 				  {/* <div >
@@ -280,9 +282,10 @@ function GenerateResults() {
 					<input
 					  type='email'
 					  value={marketing_campaignS}
-					  className='form-control sp-input'
+					  className={!subscribed?'form-control blr-field':'form-control '}
 					  id='confirmPassword'
 					  placeholder='Confirm Password'
+					  readonly
 					/>
 				  </div>
 				  <div  className='d-flex justify-content-center flex-column'>
@@ -298,9 +301,10 @@ function GenerateResults() {
 					<input
 					  type='email'
 					  value={web_designS} 
-					  className='form-control sp-input'
+					  className={!subscribed?'form-control blr-field':'form-control '}
 					  id='confirmPassword'
 					  placeholder='Confirm Password'
+					  readonly
 					/>
 				  </div>
 				  <div className='mb-3 d-flex justify-content-center flex-column'>
@@ -315,23 +319,12 @@ function GenerateResults() {
 					<input
 					  type='email'
 					  value={ad_ideaS}
-					  className='form-control sp-input' 
+					  className={!subscribed?'form-control blr-field':'form-control '}
+					  readonly
 					  id='confirmPassword'
 					  placeholder='Confirm Password'
 					/>
 				  </div>
-				  {/* <div className='mb-3'>
-					<label for='confirmPassword' className='form-label'>
-					  Scaling
-					</label>
-					<input
-					  type='password'
-					  value={scaling}
-					  className='form-control'
-					  id='confirmPassword'
-					  placeholder='Confirm Password'
-					/>
-				  </div> */}
 				</form>
 				<div className='mt-3'>
 				</div>
