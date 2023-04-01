@@ -113,11 +113,6 @@ function Login() {
         localStorage.setItem('refresh', resp.data.refresh)
         hasSubscription()
         
-      } else if (resp.status == 401) {
-        setunauthPassword('No active account found with the given credentials')
-      } else {
-        setloginerr()
-        setshowloginerr(true)
       }
     } catch (err) {
       setshowloginerr(true)
