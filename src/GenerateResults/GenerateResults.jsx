@@ -19,7 +19,7 @@ function GenerateResults() {
   const [web_designS,setWebDesign]=useState()
   const [ad_ideaS,setAdIdea]=useState()
   const [scaling,setScaling]=useState()
-  const [subscribed,setIsSubscribed]=useState()
+  const [subscribed,setIsSubscribed]=useState(false)
 
 
   useEffect=(()=>{
@@ -121,7 +121,7 @@ function GenerateResults() {
         <div className='card'>
           <div className='card-body '>
             <div className='row m-5'>
-              <span className=''>Generating</span> <br />
+              <span className=''>Generate</span> <br />
               <span className='dropship-ai'> Results...</span>
             </div>
 			{dis==true?
@@ -232,7 +232,7 @@ function GenerateResults() {
 					<input
 					  type='email'
 					  value={usernames}
-					  className={!subscribed?'form-control blr-field':'form-control '}
+					  className={subscribed !=true?'form-control blr-field':'form-control '}
 					  id='confirmPassword'
 					  placeholder='Confirm Password'
 					  readonly
@@ -251,7 +251,7 @@ function GenerateResults() {
 					<input
 					  type='email'
 					  value={bioS}
-					  className={!subscribed?'form-control blr-field':'form-control '}
+					  className={subscribed !=true?'form-control blr-field':'form-control '}
 					  id='confirmPassword'
 					  placeholder='Confirm Password'
 					  readonly
@@ -282,7 +282,7 @@ function GenerateResults() {
 					<input
 					  type='email'
 					  value={marketing_campaignS}
-					  className={!subscribed?'form-control blr-field':'form-control '}
+					  className={subscribed !=true?'form-control blr-field':'form-control'}
 					  id='confirmPassword'
 					  placeholder='Confirm Password'
 					  readonly
@@ -301,7 +301,7 @@ function GenerateResults() {
 					<input
 					  type='email'
 					  value={web_designS} 
-					  className={!subscribed?'form-control blr-field':'form-control '}
+					  className={subscribed !=true?'form-control blr-field':'form-control '}
 					  id='confirmPassword'
 					  placeholder='Confirm Password'
 					  readonly
@@ -319,7 +319,7 @@ function GenerateResults() {
 					<input
 					  type='email'
 					  value={ad_ideaS}
-					  className={!subscribed?'form-control blr-field':'form-control '}
+					  className={subscribed !=true?'form-control blr-field':'form-control '}
 					  readonly
 					  id='confirmPassword'
 					  placeholder='Confirm Password'
@@ -328,7 +328,7 @@ function GenerateResults() {
 				</form>
 				<div className='mt-3'>
 				</div>
-				{subscribed !=true ?
+				{subscribed ==true ?
 				<div>
 				 <button
 				 type='button'
@@ -340,11 +340,11 @@ function GenerateResults() {
 			   </button>
 			   </div>
 			 :''}
-				{subscribed !=true ?
-				<div className='mt-3'>
+				{subscribed ==true ?" "
+				:<div className='mt-3'>
 				To Unlock the FULL POWER of DropShip.AI buy the premium version now!  Click here {' '}
 				  <NavLink to='/shop'> here</NavLink> 
-				</div>:''}
+				</div>}
 			  </div>
 			</div>
 	  </div>
