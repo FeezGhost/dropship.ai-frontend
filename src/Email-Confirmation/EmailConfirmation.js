@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import queryString from 'query-string';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
+import './EmailConfirmation.css'
 
 
 function EmailConfirmation() {
@@ -36,17 +37,14 @@ function EmailConfirmation() {
     <div className="card" >
       <div className="card-body ">
       <div className="row m-5">
-      <span>Congratulations !Your email has been confirmed</span>
+      <span className='center-div'>Congratulations !Your email has been confirmed</span>
+      <span className='center-div'> Click{' '}<NavLink to='/login'> here</NavLink> to login </span>
       </div>
       <form className="m-3">
       <div className="m-3 btn-div">
       </div>
       </form>
       </div>
-      <div className='mt-3'>
-                    Click{' '}
-          <NavLink to='/login'> here</NavLink> to login
-        </div>
       </div>
     </div>
   )
