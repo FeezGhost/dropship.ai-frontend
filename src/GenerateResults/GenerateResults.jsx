@@ -19,13 +19,36 @@ function GenerateResults() {
   const [web_designS,setWebDesign]=useState()
   const [ad_ideaS,setAdIdea]=useState()
   const [scaling,setScaling]=useState()
-  const [subscribed,setIsSubscribed]=useState(false)
+  const [subscribed,setIsSubscribed]=useState()
 
 
-  useEffect=(()=>{
-	let subs=localStorage.getItem("isSubscribed")
-	setIsSubscribed(subs)
+  useEffect=(async ()=>{
+	hasSubscription();
+
   })
+
+  const hasSubscription = async () => {
+    try {
+      const requestOptions = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      }
+      let resp = await axios.get(
+        `${process.env.REACT_APP_API_URL}/payment/subscription/verify/`,
+        requestOptions
+      )
+      if (resp.status == 200) {
+        localStorage.setItem('isSubscribed', resp.data.isSubscribed)
+		await setIsSubscribed(resp.data.isSubscribed)
+      }
+	  else if(resp.status==401){
+	  }
+    } catch (err) {
+
+	}
+  }
 
   const configuration = new Configuration({
 	apiKey: process.env.REACT_APP_API_KEY,
@@ -215,14 +238,14 @@ function GenerateResults() {
 					  className='form-control'
 					  id='password'
 					  value={platformS}
-					  placeholder='Enter P'
-					  readonly
+					  placeholder=''
+					  readOnly
 					/>
 				  </div>
 				  <div  className='d-flex justify-content-center flex-column'>
 					<label for='confirmPassword' className='form-label'>
 					  Social Media Username
-					  {subscribed !=true ? <img
+					  {subscribed !==true ? <img
                     src={vector}
                     alt='socials'
                     className='img-fluid animated sp-img'
@@ -235,7 +258,7 @@ function GenerateResults() {
 					  className={subscribed !=true?'form-control blr-field':'form-control '}
 					  id='confirmPassword'
 					  placeholder='Confirm Password'
-					  readonly
+					  disabled={!subscribed}
 					/>
 				  </div>
 				  <div  className='d-flex justify-content-center flex-column'>
@@ -246,6 +269,7 @@ function GenerateResults() {
                     alt='socials'
                     className='img-fluid animated sp-img'
                     /> :''}
+
 					</label>
 				
 					<input
@@ -254,7 +278,7 @@ function GenerateResults() {
 					  className={subscribed !=true?'form-control blr-field':'form-control '}
 					  id='confirmPassword'
 					  placeholder='Confirm Password'
-					  readonly
+					  disabled={!subscribed}
 					/>
 				  </div>
 				  {/* <div >
@@ -285,7 +309,7 @@ function GenerateResults() {
 					  className={subscribed !=true?'form-control blr-field':'form-control'}
 					  id='confirmPassword'
 					  placeholder='Confirm Password'
-					  readonly
+					  disabled={!subscribed}
 					/>
 				  </div>
 				  <div  className='d-flex justify-content-center flex-column'>
@@ -304,7 +328,7 @@ function GenerateResults() {
 					  className={subscribed !=true?'form-control blr-field':'form-control '}
 					  id='confirmPassword'
 					  placeholder='Confirm Password'
-					  readonly
+					  disabled={!subscribed}
 					/>
 				  </div>
 				  <div className='mb-3 d-flex justify-content-center flex-column'>
@@ -320,13 +344,13 @@ function GenerateResults() {
 					  type='email'
 					  value={ad_ideaS}
 					  className={subscribed !=true?'form-control blr-field':'form-control '}
-					  readonly
+					  disabled={!subscribed}
 					  id='confirmPassword'
 					  placeholder='Confirm Password'
 					/>
 				  </div>
 				</form>
-				<div className='mt-3'>
+				<div className='mt-1'>
 				</div>
 				{subscribed ==true ?
 				<div>
