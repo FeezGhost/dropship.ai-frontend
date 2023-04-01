@@ -120,7 +120,14 @@ function Login() {
         setshowloginerr(true)
       }
     } catch (err) {
-      console.error(err)
+      setshowloginerr(true)
+      if(err.response.status==401){
+        await setloginerr("No active account found with the given credentials")
+      }
+      if(err.response.status==400){
+        await setloginerr("Login failed")
+      }
+      
     }
   }
 
