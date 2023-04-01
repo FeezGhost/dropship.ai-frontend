@@ -23,8 +23,8 @@ function GenerateResults() {
 
 
   useEffect=(()=>{
-	// let subs=localStorage.getItem("isSubscribed")
-	// setIsSubscribed(subs)
+	let subs=localStorage.getItem("isSubscribed")
+	setIsSubscribed(subs)
   })
 
   const configuration = new Configuration({
