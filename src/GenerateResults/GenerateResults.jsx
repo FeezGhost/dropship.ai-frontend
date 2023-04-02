@@ -8,7 +8,7 @@ import {Configuration, OpenAIApi} from 'openai'
 
 function GenerateResults() {
   const [dis, setdisable] = useState(false)
-  const [data, setdata] = useState(false);
+  const [data, setdata] = useState(true);
   const [error,setError]=useState('')
   const [prodS,setProd]=useState()
   const [storNameS,setStore]=useState()
@@ -24,7 +24,6 @@ function GenerateResults() {
 
   useEffect=(()=>{
 	hasSubscription();
-	console.log("gener")
   })
 
   const hasSubscription = async () => {
@@ -302,6 +301,7 @@ function GenerateResults() {
 					  value={bioS}
 					  className={subscribed !=true?'form-control blr-field':'form-control '}
 					  id='confirmPassword'
+					  readOnly
 					  placeholder='Confirm Password'
 					  disabled={!subscribed}
 					/>

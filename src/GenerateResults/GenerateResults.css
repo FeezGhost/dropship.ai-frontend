@@ -26,6 +26,10 @@
     filter: blur(3px);
 }
 
+.sp-input{
+    user-select: none;
+}
+
 
 /* .sp-input {
     border:1px solid #ddd;
