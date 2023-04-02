@@ -30,21 +30,23 @@ function Login() {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       }
-	  
+      console.log("funcalled3")
       let resp = await axios.get(
         `${process.env.REACT_APP_API_URL}/payment/subscription/verify/`,
         requestOptions
       )
       if (resp.status == 200) {
         localStorage.setItem('isSubscribed', resp.data.isSubscribed)
-		setTimeout(() => {
-			window.location.href = '/'
-		}, 100);
+        setTimeout(() => {
+        window.location.href = '/'
+        }, 100);
+        }
+    } catch (err) {
+      if(err.response.status==401){
+        localStorage.removeItem("token");
+        rfreshToken();
       }
-	  else if(resp.status==401){
-		rfreshToken();
-	  }
-    } catch (err) {}
+    }
   }
 
   const rfreshToken = async () => {
@@ -60,7 +62,8 @@ function Login() {
         )
         if (resp.status == 200) {
           localStorage.removeItem('token')
-          localStorage.setItem('token', resp.data.access)
+          localStorage.setItem('token', resp.data.access);
+          hasSubscription()
         }
       }
     } catch (err) {
@@ -110,7 +113,7 @@ function Login() {
         setshowloginerr(false)
         const token = resp.data.access
         await localStorage.setItem('token', token)
-        localStorage.setItem('refresh', resp.data.refresh)
+        await localStorage.setItem('refresh', resp.data.refresh)
         hasSubscription()
         
       }

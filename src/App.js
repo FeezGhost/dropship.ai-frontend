@@ -1,7 +1,7 @@
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import '../node_modules/bootstrap/dist/js/bootstrap.bundle'
-import { useEffect } from 'react';
-import {Route,Switch} from 'react-router-dom';
+import { useEffect,useState } from 'react';
+import {Route,Switch,Redirect} from 'react-router-dom';
 import axios from 'axios'
 import { history } from './helper/history';
 import RouteGuard from './RouteGuard/RouteGuard';
@@ -16,7 +16,7 @@ import Login from './Login/Login';
 import GenerateResults from './GenerateResults/GenerateResults';
 import EmailConfirmation from './Email-Confirmation/EmailConfirmation';
 import ResendEmail from './ResendEmail/ResendEmail';
-import Subscription from './Subscription/Subscription';
+import AuthGuard from './RouteGuard/AuthGuard';
 import Checkout from './Checkout/Checkout';
 import ResetPassword from './Recover-pass/Reset-Password';
 import CheckoutSuccess from './Checkout/CheckoutSuccess';
@@ -24,17 +24,28 @@ import CheckoutCancel from './Checkout/CheckoutCancel';
 import { ReactNotifications } from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
 import { REACT_APP_STRIPE_KEY } from './Config/Config'
+import Subscribed from './Checkout/Subscribed';
 
 const stripe_key = REACT_APP_STRIPE_KEY
 const stripePromise = loadStripe(stripe_key)
 
 function App() {
+  const [sub,setIssub]=useState()
+  const [isLoggedIn,setIsLoggedIn]=useState()
+
   useEffect( ()=>{
     checkToken();
+    debugger
+    console.log("funcalled")
+    if(localStorage.getItem("token") !=undefined)
+    {
+      setIsLoggedIn(true)
+    }
   })
   const checkToken=async()=>{
     if(localStorage.getItem("token") !=undefined){
-      try {
+      try {   
+        console.log("funcalled")     
         const requestOptions = {
           headers: {
             'Content-Type': 'application/json',
@@ -47,18 +58,43 @@ function App() {
         )
         
         if (resp.status == 200) {
-
           localStorage.setItem('isSubscribed', resp.data.isSubscribed)
+          setIssub(resp.data.isSubscribed)
+          console.log("datamin",resp.data.isSubscribed)
+          console.log("datamin",sub)
+          // localStorage.setItem('isSubscribed', 'false')
         }
       } catch (err) {
         if(err.response.status==401){
           localStorage.removeItem("token");
-          localStorage.removeItem("refresh");
-          localStorage.removeItem("isSubscribed");
+          rfreshToken();
         }
       }
     }
   }
+  const rfreshToken = async () => {
+    try {
+      if (localStorage.getItem('refresh') != undefined) {
+        const requestOptions = {
+          headers: { 'Content-Type': 'application/json' },
+          refresh: localStorage.getItem('refresh'),
+        }
+        let resp = await axios.post(
+          `${process.env.REACT_APP_API_URL}/auth/jwt/refresh/`,
+          requestOptions
+        )
+        if (resp.status == 200) {
+          localStorage.removeItem('token')
+          localStorage.setItem('token', resp.data.access)
+          
+          checkToken();
+        }
+      }
+    } catch (err) {
+      console.error(err)
+    }
+  }
+  
 
 
   return (
@@ -68,17 +104,19 @@ function App() {
       <ReactNotifications />
       <Switch>
         <Route exact path='/'><Home/></Route> 
-        <Route exact path='/about'><About/></Route>
-        <Route exact path='/login'><Login/></Route> 
-        <Route exact path='/signup'><Signup/></Route> 
-        <Route exact path='/recover'><Recover/></Route> 
-        <RouteGuard exact path="/generate-product" component={GenerateResults}/>
-        <Route exact path="/resend-email"><ResendEmail/></Route> 
-        <Route exact path="/email-confirmation"><EmailConfirmation/></Route> 
-        <RouteGuard  exact path="/shop" component={Checkout} />
-        <Route exact path='/checkout/success/'><CheckoutSuccess/></Route>
-        <Route exact path='/checkout/failed/'><CheckoutCancel/></Route> 
-        <Route exact path='/password-reset'><ResetPassword/></Route> 
+        <Route  path='/about'><About/></Route>
+        <Route  path='/login'><Login/></Route> 
+        <Route  path='/signup'><Signup/></Route> 
+        <Route  path='/recover'><Recover/></Route> 
+        <Route  path="/resend-email"><ResendEmail/></Route> 
+        <Route  path="/email-confirmation"><EmailConfirmation/></Route> 
+        <RouteGuard  path="/shop" component={sub==false ? Subscribed: Checkout}/>
+        {/* <Route  path='/generate-product'><GenerateResults/></Route> */}
+        <Route exact path='/generate-product'><GenerateResults/></Route>
+        <Route  path='/checkout/success/'><CheckoutSuccess/></Route>
+        <Route  path='/checkout/failed/'><CheckoutCancel/></Route> 
+        <Route  path='/password-reset'><ResetPassword/></Route> 
+        {/* <RouteGuard path="/generate-product" component={GenerateResults}/> */}
       </Switch>
       </Elements>
       </>

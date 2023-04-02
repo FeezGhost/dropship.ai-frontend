@@ -4,11 +4,18 @@ import Nav from 'react-bootstrap/Nav';
 import { NavLink } from 'react-router-dom'
 
 function Navbar() {
+  const [sub,setIssub]=useState()
+  
+  // useEffect( ()=>{
+  //   setIssub(localStorage.getItem('isSubscribed'))
+  //   console.log("funcalled")
+  // })
 
 
-
-
-
+  // {sub ==  true?  <RouteGuard   path="/shop" component={Subscribed} /> 
+  // :
+  //  <RouteGuard   path="/shop" component={Checkout} />
+  // }
   return (
   <>
   <div className="container-fluid nav_bg navbar-reset"> 

@@ -1,11 +1,13 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
  
-const RouteGuard = ({ component: Component, ...rest }) => {
+
+const AuthGuard = ({ component: Component, ...rest }) => {
  
    function hasJWT() {
+	debugger
        let flag = false;
- 
+        debugger
        //check user has JWT token
        localStorage.getItem("token") ? flag=true : flag=false
        return flag
@@ -15,7 +17,7 @@ const RouteGuard = ({ component: Component, ...rest }) => {
        <Route {...rest}
            render={props => (
                hasJWT() ?
-                   <Route {...rest} render={props => <Component {...rest} {...props} />} />
+               <Route {...rest} render={props => <Component {...rest} {...props} />} />
                    :
                    <Redirect to='/login' />
            )}
@@ -23,4 +25,4 @@ const RouteGuard = ({ component: Component, ...rest }) => {
    );
 };
  
-export default RouteGuard;
+export default AuthGuard;

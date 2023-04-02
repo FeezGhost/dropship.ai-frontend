@@ -22,9 +22,9 @@ function GenerateResults() {
   const [subscribed,setIsSubscribed]=useState()
 
 
-  useEffect=(async ()=>{
+  useEffect=(()=>{
 	hasSubscription();
-
+	console.log("gener")
   })
 
   const hasSubscription = async () => {
@@ -46,8 +46,33 @@ function GenerateResults() {
 	  else if(resp.status==401){
 	  }
     } catch (err) {
-
+		if(err.response.status==401){
+			localStorage.removeItem("token");
+			rfreshToken();
+		  }
 	}
+  }
+
+  const rfreshToken = async () => {
+    try {
+      if (localStorage.getItem('refresh') != undefined) {
+        const requestOptions = {
+          headers: { 'Content-Type': 'application/json' },
+          refresh: localStorage.getItem('refresh'),
+        }
+        let resp = await axios.post(
+          `${process.env.REACT_APP_API_URL}/auth/jwt/refresh/`,
+          requestOptions
+        )
+        if (resp.status == 200) {
+          localStorage.removeItem('token')
+          localStorage.setItem('token', resp.data.access);
+		  hasSubscription();
+        }
+      }
+    } catch (err) {
+      console.error(err)
+    }
   }
 
   const configuration = new Configuration({
