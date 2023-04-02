@@ -35,12 +35,6 @@ function App() {
 
   useEffect( ()=>{
     checkToken();
-    debugger
-    console.log("funcalled")
-    if(localStorage.getItem("token") !=undefined)
-    {
-      setIsLoggedIn(true)
-    }
   })
   const checkToken=async()=>{
     if(localStorage.getItem("token") !=undefined){
@@ -58,16 +52,16 @@ function App() {
         )
         
         if (resp.status == 200) {
+          setIsLoggedIn(true)
           localStorage.setItem('isSubscribed', resp.data.isSubscribed)
           setIssub(resp.data.isSubscribed)
-          console.log("datamin",resp.data.isSubscribed)
-          console.log("datamin",sub)
-          // localStorage.setItem('isSubscribed', 'false')
+          localStorage.setItem('isSubscribed', resp.data.isSubscribed)
         }
       } catch (err) {
         if(err.response.status==401){
           localStorage.removeItem("token");
-          rfreshToken();
+          localStorage.removeItem("isSubscribed")
+          localStorage.removeItem("refresh")
         }
       }
     }
@@ -110,7 +104,7 @@ function App() {
         <Route  path='/recover'><Recover/></Route> 
         <Route  path="/resend-email"><ResendEmail/></Route> 
         <Route  path="/email-confirmation"><EmailConfirmation/></Route> 
-        <RouteGuard  path="/shop" component={sub==false ? Subscribed: Checkout}/>
+        <RouteGuard  path="/shop" component={sub==true ? Subscribed: Checkout}/>
         {/* <Route  path='/generate-product'><GenerateResults/></Route> */}
         <Route exact path='/generate-product'><GenerateResults/></Route>
         <Route  path='/checkout/success/'><CheckoutSuccess/></Route>

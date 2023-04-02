@@ -1,7 +1,40 @@
-import React,{useEffect} from 'react'
+import React,{useEffect} from 'react';
+import axios from 'axios';
 
 
 function CheckoutSuccess() {
+
+  useEffect(()=>{
+    checkToken()
+  })
+
+  const checkToken=async()=>{
+    if(localStorage.getItem("token") !=undefined){
+      try {   
+        console.log("funcalled")     
+        const requestOptions = {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }
+        let resp = await axios.get(
+          `${process.env.REACT_APP_API_URL}/payment/subscription/verify/`,
+          requestOptions
+        )
+        
+        if (resp.status == 200) {
+          localStorage.setItem('isSubscribed', resp.data.isSubscribed)
+        }
+      } catch (err) {
+        if(err.response.status==401){
+          localStorage.removeItem("token");
+          localStorage.removeItem("isSubscribed")
+          localStorage.removeItem("refresh")
+        }
+      }
+    }
+  }
 
 
   return (
