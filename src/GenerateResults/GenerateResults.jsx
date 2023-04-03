@@ -293,7 +293,7 @@ function GenerateResults() {
 					  className={subscribed !=='true'?'form-control blr-field':'form-control '}
 					  id='confirmPassword'
 					  placeholder='Confirm Password'
-					  disabled={!subscribed}
+					  disabled={subscribed=='false'?false:true}
 					/>
 				  </div>
 				  <div  className='d-flex justify-content-center flex-column'>
@@ -314,7 +314,7 @@ function GenerateResults() {
 					  id='confirmPassword'
 					  readOnly
 					  placeholder='Confirm Password'
-					  disabled={!subscribed}
+					  disabled={subscribed=='false'?false:true}
 					/>
 				  </div>
 				  {/* <div >
@@ -345,7 +345,7 @@ function GenerateResults() {
 					  className={subscribed !=='true'?'form-control blr-field':'form-control'}
 					  id='confirmPassword'
 					  placeholder='Confirm Password'
-					  disabled={!subscribed}
+					  disabled={subscribed=='false'?false:true}
 					/>
 				  </div>
 				  <div  className='d-flex justify-content-center flex-column'>
@@ -364,7 +364,7 @@ function GenerateResults() {
 					  className={subscribed !=='true'?'form-control blr-field':'form-control '}
 					  id='confirmPassword'
 					  placeholder='Confirm Password'
-					  disabled={!subscribed}
+					  disabled={subscribed=='false'?false:true}
 					/>
 				  </div>
 				  <div className='mb-3 d-flex justify-content-center flex-column'>
@@ -380,7 +380,7 @@ function GenerateResults() {
 					  type='email'
 					  value={ad_ideaS}
 					  className={subscribed ==='true'?'form-control':'form-control blr-field '}
-					  disabled={!subscribed}
+					  disabled={subscribed=='false'?false:true}
 					  id='confirmPassword'
 					  placeholder='Confirm Password'
 					/>
