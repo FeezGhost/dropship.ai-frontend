@@ -9,7 +9,7 @@ import {Configuration, OpenAIApi} from 'openai';
 
 function GenerateResults() {
   const [dis, setdisable] = useState(false)
-  const [data, setdata] = useState(true);
+  const [data, setdata] = useState(false);
   const [error,setError]=useState('')
   const [prodS,setProd]=useState()
   const [storNameS,setStore]=useState()
