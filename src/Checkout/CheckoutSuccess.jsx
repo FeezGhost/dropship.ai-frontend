@@ -11,7 +11,7 @@ function CheckoutSuccess() {
   const checkToken=async()=>{
     if(localStorage.getItem("token") !=undefined){
       try {   
-        console.log("funcalled")     
+        console.log("funcalled1")     
         const requestOptions = {
           headers: {
             'Content-Type': 'application/json',

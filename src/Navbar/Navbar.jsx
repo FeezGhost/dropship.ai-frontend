@@ -4,18 +4,18 @@ import Nav from 'react-bootstrap/Nav';
 import { NavLink } from 'react-router-dom'
 
 function Navbar() {
-  const [sub,setIssub]=useState()
-  
-  // useEffect( ()=>{
-  //   setIssub(localStorage.getItem('isSubscribed'))
-  //   console.log("funcalled")
-  // })
+  const [sub,setisSub]=useState(false)
+
+	useEffect(()=>{
+		if(localStorage.getItem("isSubscribed") !=null){
+			setisSub(localStorage.getItem("isSubscribed"));
+		}
+		else if(localStorage.getItem("isSubscribed") ==null){
+			setisSub(false)
+		}
+	})
 
 
-  // {sub ==  true?  <RouteGuard   path="/shop" component={Subscribed} /> 
-  // :
-  //  <RouteGuard   path="/shop" component={Checkout} />
-  // }
   return (
   <>
   <div className="container-fluid nav_bg navbar-reset"> 
@@ -37,7 +37,12 @@ function Navbar() {
           <NavLink  className="nav-link" to="/about"  activeClassName="menu_active">About Us</NavLink>
         </li> */}
         <li className="nav-item">
+          {sub =='true'?
+          <NavLink  className="nav-link" to="/shop" activeClassName="menu_active">Dropship Pro</NavLink>
+          :
           <NavLink  className="nav-link" to="/shop" activeClassName="menu_active">Shop</NavLink>
+          }
+          
         </li>
         {/* <li className="nav-item">
           <NavLink  className="nav-link" to="/faq" activeClassName="menu_active">FAQ</NavLink>

@@ -1,14 +1,15 @@
-import React, { useState,useEffect } from 'react'
+import React, { useEffect,useState } from 'react'
 import { NavLink } from 'react-router-dom';
 import './GenerateResults.css';
 import axios from 'axios';
 import vector from '../assets/Vector.png';
 import { Oval } from 'react-loader-spinner'
-import {Configuration, OpenAIApi} from 'openai'
+import {Configuration, OpenAIApi} from 'openai';
+// import  useState  from 'react-usestateref'
 
 function GenerateResults() {
   const [dis, setdisable] = useState(false)
-  const [data, setdata] = useState(false);
+  const [data, setdata] = useState(true);
   const [error,setError]=useState('')
   const [prodS,setProd]=useState()
   const [storNameS,setStore]=useState()
@@ -22,9 +23,19 @@ function GenerateResults() {
   const [subscribed,setIsSubscribed]=useState()
 
 
-  useEffect=(()=>{
-	hasSubscription();
+ 
+  useEffect(()=>{
+	if(localStorage.getItem("isSubscribed") !=null){
+		// hasSubscription();
+		setIsSubscribed(localStorage.getItem("isSubscribed"));
+	}
+	else if(localStorage.getItem("isSubscribed") ==null){
+		setIsSubscribed(false)
+	}
   })
+
+
+  
 
   const hasSubscription = async () => {
     try {
@@ -41,6 +52,7 @@ function GenerateResults() {
       if (resp.status == 200) {
         localStorage.setItem('isSubscribed', resp.data.isSubscribed)
 		await setIsSubscribed(resp.data.isSubscribed)
+		return
       }
 	  else if(resp.status==401){
 	  }
@@ -48,13 +60,13 @@ function GenerateResults() {
 		if(err.response.status==401){
 			localStorage.removeItem("token");
 			rfreshToken();
+			debugger
 		  }
 	}
   }
 
   const rfreshToken = async () => {
     try {
-      if (localStorage.getItem('refresh') != undefined) {
         const requestOptions = {
           headers: { 'Content-Type': 'application/json' },
           refresh: localStorage.getItem('refresh'),
@@ -66,9 +78,8 @@ function GenerateResults() {
         if (resp.status == 200) {
           localStorage.removeItem('token')
           localStorage.setItem('token', resp.data.access);
-		  hasSubscription();
+		//   hasSubscription();
         }
-      }
     } catch (err) {
       console.error(err)
     }
@@ -269,7 +280,7 @@ function GenerateResults() {
 				  <div  className='d-flex justify-content-center flex-column'>
 					<label for='confirmPassword' className='form-label'>
 					  Social Media Username
-					  {subscribed !==true ? <img
+					  {subscribed !=='true' ? <img
                     src={vector}
                     alt='socials'
                     className='img-fluid animated sp-img'
@@ -279,7 +290,7 @@ function GenerateResults() {
 					<input
 					  type='email'
 					  value={usernames}
-					  className={subscribed !=true?'form-control blr-field':'form-control '}
+					  className={subscribed !=='true'?'form-control blr-field':'form-control '}
 					  id='confirmPassword'
 					  placeholder='Confirm Password'
 					  disabled={!subscribed}
@@ -288,7 +299,7 @@ function GenerateResults() {
 				  <div  className='d-flex justify-content-center flex-column'>
 					<label for='confirmPassword' className='form-label'>
 					  Bio
-					  {subscribed !=true ? <img
+					  {subscribed !=='true' ? <img
                     src={vector}
                     alt='socials'
                     className='img-fluid animated sp-img'
@@ -299,7 +310,7 @@ function GenerateResults() {
 					<input
 					  type='email'
 					  value={bioS}
-					  className={subscribed !=true?'form-control blr-field':'form-control '}
+					  className={subscribed !=='true'?'form-control blr-field':'form-control'}
 					  id='confirmPassword'
 					  readOnly
 					  placeholder='Confirm Password'
@@ -321,7 +332,7 @@ function GenerateResults() {
 				  <div  className='d-flex justify-content-center flex-column'>
 					<label for='confirmPassword' className='form-label'>
 					  Marketing Campaign
-					  {subscribed !=true ? <img
+					  {subscribed !=='true' ? <img
                     src={vector}
                     alt='socials'
                     className='img-fluid animated sp-img' 
@@ -331,7 +342,7 @@ function GenerateResults() {
 					<input
 					  type='email'
 					  value={marketing_campaignS}
-					  className={subscribed !=true?'form-control blr-field':'form-control'}
+					  className={subscribed !=='true'?'form-control blr-field':'form-control'}
 					  id='confirmPassword'
 					  placeholder='Confirm Password'
 					  disabled={!subscribed}
@@ -340,7 +351,7 @@ function GenerateResults() {
 				  <div  className='d-flex justify-content-center flex-column'>
 					<label for='confirmPassword' className='form-label'>
 					  Web Design
-					  {subscribed !=true ? <img
+					  {subscribed !='true' ? <img
                     src={vector}
                     alt='socials'
                     className='img-fluid animated sp-img'
@@ -350,7 +361,7 @@ function GenerateResults() {
 					<input
 					  type='email'
 					  value={web_designS} 
-					  className={subscribed !=true?'form-control blr-field':'form-control '}
+					  className={subscribed !=='true'?'form-control blr-field':'form-control '}
 					  id='confirmPassword'
 					  placeholder='Confirm Password'
 					  disabled={!subscribed}
@@ -359,7 +370,7 @@ function GenerateResults() {
 				  <div className='mb-3 d-flex justify-content-center flex-column'>
 					<label for='confirmPassword' className='form-label'>
 					  Ad Idea 
-					  {subscribed !=true ? <img
+					  {subscribed !='true' ? <img
                     src={vector}
                     alt='socials'
                     className='img-fluid animated sp-img'
@@ -368,7 +379,7 @@ function GenerateResults() {
 					<input
 					  type='email'
 					  value={ad_ideaS}
-					  className={subscribed !=true?'form-control blr-field':'form-control '}
+					  className={subscribed ==='true'?'form-control':'form-control blr-field '}
 					  disabled={!subscribed}
 					  id='confirmPassword'
 					  placeholder='Confirm Password'
@@ -377,7 +388,7 @@ function GenerateResults() {
 				</form>
 				<div className='mt-1'>
 				</div>
-				{subscribed ==true ?
+				{subscribed ==='true' ?
 				<div>
 				 <button
 				 type='button'
@@ -389,7 +400,7 @@ function GenerateResults() {
 			   </button>
 			   </div>
 			 :''}
-				{subscribed ==true ?" "
+				{subscribed =='true' ?" "
 				:<div className='mt-3'>
 				To Unlock the FULL POWER of DropShip.AI buy the premium version now!  Click here {' '}
 				  <NavLink to='/shop'> here</NavLink> 

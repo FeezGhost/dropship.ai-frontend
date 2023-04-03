@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import socials from '../assets/socials.png';
 import cartbox from '../assets/cart-box.png';
 import uparrow from '../assets/uparrow.png';
@@ -18,6 +18,17 @@ import './Home.css';
 
 
 function Home() {
+	const [sub,setisSub]=useState(false)
+
+	useEffect(()=>{
+		if(localStorage.getItem("isSubscribed") !=null){
+			setisSub(localStorage.getItem("isSubscribed"));
+		}
+		else if(localStorage.getItem("isSubscribed") ==null){
+			setisSub(false)
+		}
+
+	})
   return (
 	<>
 	<section id="header" className="d-flex align-items-center mt-5">
@@ -34,11 +45,19 @@ function Home() {
 							<span className='ai'> Ai</span> 
 						</h1>
 						<h7 className="sm-text">An AI-powered drop shipping starter kit. tool designed to <br/> make your drop shipping journey as easy and quick as <br/> possible.</h7>
+						{sub =="true"?
 						<div className="mt-5">
-							<NavLink to="/signup" className="btn-get-started">
-								Create your Account
-							</NavLink>
+						<NavLink to="/generate-product" className="btn-get-started">
+							Generate Product
+						</NavLink>
+						</div>:
+						<div className="mt-5">
+						<NavLink to="/signup" className="btn-get-started">
+							Create your Account
+						</NavLink>
 						</div>
+					}
+						
 					</div>
 					<div className='col-lg-6 order-2 order-lg-2 header-img d-flex justify-content-center flex-column socials-div'>
 						<img src={socials} alt="socials" className='socials img-fluid-animated'/>
