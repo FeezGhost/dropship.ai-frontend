@@ -1,5 +1,7 @@
 import React,{useEffect} from 'react';
 import axios from 'axios';
+import { NavLink } from 'react-router-dom';
+import './Checkout.css'
 
 
 function CheckoutSuccess() {
@@ -43,6 +45,7 @@ function CheckoutSuccess() {
       <div className="card-body ">
       <div className="row m-5">
       <span>Congratulations you have successfully subscribed!</span>
+      <span className='center-div'> Click{' '}<NavLink to='/generate-product'> here</NavLink> to generate product </span>
       </div>
       <form className="m-3">
       <div className="m-3 btn-div">

@@ -21,13 +21,12 @@ function Home() {
 	const [sub,setisSub]=useState(false)
 
 	useEffect(()=>{
-		if(localStorage.getItem("isSubscribed") !=null){
-			setisSub(localStorage.getItem("isSubscribed"));
+		if(localStorage.getItem("token") !=null){
+			setisSub(true);
 		}
-		else if(localStorage.getItem("isSubscribed") ==null){
+		else if(localStorage.getItem("token")==null || localStorage.getItem("token")=='null'){
 			setisSub(false)
 		}
-
 	})
   return (
 	<>
@@ -45,7 +44,7 @@ function Home() {
 							<span className='ai'> Ai</span> 
 						</h1>
 						<h7 className="sm-text">An AI-powered drop shipping starter kit. tool designed to <br/> make your drop shipping journey as easy and quick as <br/> possible.</h7>
-						{sub =="true"?
+						{sub ==true?
 						<div className="mt-5">
 						<NavLink to="/generate-product" className="btn-get-started">
 							Generate Product

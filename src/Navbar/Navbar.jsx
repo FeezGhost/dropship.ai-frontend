@@ -37,12 +37,7 @@ function Navbar() {
           <NavLink  className="nav-link" to="/about"  activeClassName="menu_active">About Us</NavLink>
         </li> */}
         <li className="nav-item">
-          {sub =='true'?
-          <NavLink  className="nav-link" to="/shop" activeClassName="menu_active">Dropship Pro</NavLink>
-          :
-          <NavLink  className="nav-link" to="/shop" activeClassName="menu_active">Shop</NavLink>
-          }
-          
+        <NavLink  className="nav-link" to="/shop" activeClassName="menu_active">Dropship Pro</NavLink>
         </li>
         {/* <li className="nav-item">
           <NavLink  className="nav-link" to="/faq" activeClassName="menu_active">FAQ</NavLink>
