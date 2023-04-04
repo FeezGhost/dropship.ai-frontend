@@ -2,6 +2,11 @@
 	margin-left: auto !important;
 }
 
+.logo-cls{
+	width: 74px;
+    height: 76px;
+}
+
 
 .menu_active{
 	font-weight: bold;
