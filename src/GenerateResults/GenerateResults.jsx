@@ -30,7 +30,7 @@ function GenerateResults() {
 		setIsSubscribed(localStorage.getItem("isSubscribed"));
 	}
 	else if(localStorage.getItem("isSubscribed") ==null){
-		setIsSubscribed(false)
+		setIsSubscribed('false')
 	}
   })
 
@@ -178,10 +178,17 @@ function GenerateResults() {
 		<div className='d-flex align-items-center justify-content-center col-md-12 gen-rslt'>
         <div className='card'>
           <div className='card-body '>
+			{dis==true ?
+			<div className='row m-5'>
+			<span className=''>Generating</span> <br />
+			<span className='dropship-ai'> Results...</span>
+			</div>
+			:
             <div className='row m-5'>
               <span className=''>Generate</span> <br />
               <span className='dropship-ai'> Results...</span>
             </div>
+			}
 			{dis==true?
 			<div className='ov'>
 			<Oval
@@ -267,15 +274,9 @@ function GenerateResults() {
 					<label for='password' className='form-label'>
 					  Platform
 					</label>
+					<textarea  value={platformS}class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
 					
-					<input
-					  type='email'
-					  className='form-control'
-					  id='password'
-					  value={platformS}
-					  placeholder=''
-					  readOnly
-					/>
+					
 				  </div>
 				  <div  className='d-flex justify-content-center flex-column'>
 					<label for='confirmPassword' className='form-label'>
@@ -286,15 +287,12 @@ function GenerateResults() {
                     className='img-fluid animated sp-img'
                     /> :''}
 					</label>
+					{subscribed=='true'?
+					<textarea  value={usernames}class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+					:
+					<p  className='buy-text'>Buy Dropship Subscription to unlock this!</p>
+					}
 					
-					<input
-					  type='email'
-					  value={usernames}
-					  className={subscribed !=='true'?'form-control blr-field':'form-control '}
-					  id='confirmPassword'
-					  placeholder='Confirm Password'
-					  disabled={subscribed=='false'?false:true}
-					/>
 				  </div>
 				  <div  className='d-flex justify-content-center flex-column'>
 					<label for='confirmPassword' className='form-label'>
@@ -306,29 +304,12 @@ function GenerateResults() {
                     /> :''}
 
 					</label>
-				
-					<input
-					  type='email'
-					  value={bioS}
-					  className={subscribed !=='true'?'form-control blr-field':'form-control'}
-					  id='confirmPassword'
-					  readOnly
-					  placeholder='Confirm Password'
-					  disabled={subscribed=='false'?false:true}
-					/>
+					{subscribed=='true'?
+					<textarea  value={bioS}class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+					:
+					<p  className='buy-text'>Buy Dropship Subscription to unlock this!</p>
+					}
 				  </div>
-				  {/* <div >
-					<label for='confirmPassword' className='form-label'>
-					  Socials
-					</label>
-					<input
-					  type='password'
-					  value={productdata.socials}
-					  className='form-control'
-					  id='confirmPassword'
-					  placeholder='Confirm Password'
-					/>
-				  </div> */}
 				  <div  className='d-flex justify-content-center flex-column'>
 					<label for='confirmPassword' className='form-label'>
 					  Marketing Campaign
@@ -338,15 +319,12 @@ function GenerateResults() {
                     className='img-fluid animated sp-img' 
                     /> :''}
 					</label>
-					
-					<input
-					  type='email'
-					  value={marketing_campaignS}
-					  className={subscribed !=='true'?'form-control blr-field':'form-control'}
-					  id='confirmPassword'
-					  placeholder='Confirm Password'
-					  disabled={subscribed=='false'?false:true}
-					/>
+					{subscribed=='true'?
+					<textarea  value={marketing_campaignS}class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+					:
+					<p  className='buy-text'>Buy Dropship Subscription to unlock this!</p>
+					}
+
 				  </div>
 				  <div  className='d-flex justify-content-center flex-column'>
 					<label for='confirmPassword' className='form-label'>
@@ -357,15 +335,11 @@ function GenerateResults() {
                     className='img-fluid animated sp-img'
                     /> :''}
 					</label>
-					
-					<input
-					  type='email'
-					  value={web_designS} 
-					  className={subscribed !=='true'?'form-control blr-field':'form-control '}
-					  id='confirmPassword'
-					  placeholder='Confirm Password'
-					  disabled={subscribed=='false'?false:true}
-					/>
+					{subscribed=='true'?
+					 <textarea  value={web_designS}class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+					:
+					<p  className='buy-text'>Buy Dropship Subscription to unlock this!</p>
+					}
 				  </div>
 				  <div className='mb-3 d-flex justify-content-center flex-column'>
 					<label for='confirmPassword' className='form-label'>
@@ -376,14 +350,12 @@ function GenerateResults() {
                     className='img-fluid animated sp-img'
                     /> :''}
 					</label>
-					<input
-					  type='email'
-					  value={ad_ideaS}
-					  className={subscribed ==='true'?'form-control':'form-control blr-field '}
-					  disabled={subscribed=='false'?false:true}
-					  id='confirmPassword'
-					  placeholder='Confirm Password'
-					/>
+					{subscribed=='true'?
+					 <textarea  value={ad_ideaS}class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+				  :
+				  <p  className='buy-text'>Buy Dropship Subscription to unlock this!</p>
+					}
+					
 				  </div>
 				</form>
 				<div className='mt-1'>
@@ -396,7 +368,7 @@ function GenerateResults() {
 				 onClick={regenerateProduct}
 				 className='btn btn-primary'
 			   >
-				 Generate Product
+				 Generate again
 			   </button>
 			   </div>
 			 :''}

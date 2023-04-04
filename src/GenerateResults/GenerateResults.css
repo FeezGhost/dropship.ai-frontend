@@ -16,10 +16,16 @@
     margin-top: 9rem;
 }
 
-
+.buy-text{
+    color: grey;
+    border: 1px solid;
+    border-radius: 3px;
+    height: 2rem;
+}
 
 .form-label{
     margin-top:1rem !important;
+    font-size:22px;
 }
 
 .blr-field{
